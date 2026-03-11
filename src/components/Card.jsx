@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-const TARGET_LONG = 280 // px - make card scale a bit larger so text is easily readable on hover
+const TARGET_LONG = 450 // px - make card expand massively on hover
 
 const sizeClass = {
     default: '',
