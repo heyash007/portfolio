@@ -55,23 +55,18 @@ export default function Card({ card, isHidden, onOpen }) {
                 <span className="bracket bracket--bl" />
                 <span className="bracket bracket--br" />
 
-                {/* Top: Year + Title (right aligned) */}
-                <div className="card-overlay-top">
-                    <div className="card-overlay-meta">
-                        <span className="card-overlay-year">{card.year}</span>
-                        <h3 className="card-overlay-title">{card.title}</h3>
-                    </div>
-                </div>
-
-                {/* Middle: Secondary Description / Category Pill */}
-                <div className="card-overlay-middle">
-                    <p className="card-overlay-desc">{card.description}</p>
+                {/* Top Header Row */}
+                <div className="card-overlay-header">
+                    <span className="card-overlay-year">{card.year}</span>
+                    <h3 className="card-overlay-title">{card.title}</h3>
                     <span className="card-overlay-pill">{card.categoryLabel}</span>
                 </div>
 
-                {/* Bottom: Smaller embedded image */}
-                <div className="card-overlay-bottom">
-                    <img src={card.image} alt={card.title} className="card-overlay-img" />
+                {/* Centered Image Body */}
+                <div className="card-overlay-body">
+                    <div className="card-overlay-img-wrap">
+                        <img src={card.image} alt={card.title} className="card-overlay-img" />
+                    </div>
                 </div>
             </div>
         </div>

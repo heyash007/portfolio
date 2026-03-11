@@ -144,13 +144,15 @@ body {
 .card-overlay {
     position: absolute;
     inset: 0;
-    background: #fafafa;
+    background: #fff;
     display: flex;
     flex-direction: column;
-    padding: 6px;
+    padding: 12px;
     opacity: 0;
     transition: opacity 0.28s ease;
     z-index: 4;
+    border: 0.5px solid #eaeaea;
+    /* very subtle border to frame the white */
 }
 
 .card:hover .card-overlay {
@@ -160,110 +162,94 @@ body {
 /* ── Corner brackets ── */
 .bracket {
     position: absolute;
-    width: 6px;
-    height: 6px;
-    border-color: #bbb;
+    width: 8px;
+    height: 8px;
+    border-color: #000;
     border-style: solid;
     z-index: 10;
 }
 
 .bracket--tl {
-    top: 3px;
-    left: 3px;
+    top: 4px;
+    left: 4px;
     border-width: 0.5px 0 0 0.5px;
 }
 
 .bracket--tr {
-    top: 3px;
-    right: 3px;
+    top: 4px;
+    right: 4px;
     border-width: 0.5px 0.5px 0 0;
 }
 
 .bracket--bl {
-    bottom: 3px;
-    left: 3px;
+    bottom: 4px;
+    left: 4px;
     border-width: 0 0 0.5px 0.5px;
 }
 
 .bracket--br {
-    bottom: 3px;
-    right: 3px;
+    bottom: 4px;
+    right: 4px;
     border-width: 0 0.5px 0.5px 0;
 }
 
-/* ── TOP: Year + Title right-aligned ── */
-.card-overlay-top {
+/* ── HEADER ── */
+.card-overlay-header {
     display: flex;
-    justify-content: flex-end;
-    margin-bottom: auto;
-}
-
-.card-overlay-meta {
-    text-align: right;
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 2px;
 }
 
 .card-overlay-year {
-    font-size: 3.5px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    color: #999;
+    font-size: 5px;
+    font-weight: 700;
+    color: #111;
+    margin-right: 3px;
 }
 
 .card-overlay-title {
-    font-size: 5.5px;
-    font-weight: 500;
-    color: #111;
-    letter-spacing: -0.02em;
-    margin: 0;
-}
-
-/* ── MIDDLE: category pill ── */
-.card-overlay-middle {
-    text-align: right;
-    margin-bottom: 4px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 3px;
-}
-
-.card-overlay-desc {
-    font-size: 3px;
+    font-size: 5px;
     font-weight: 400;
-    color: #555;
-    line-height: 1.4;
-    max-width: 80%;
-    text-transform: none;
-    letter-spacing: 0;
+    color: #111;
+    margin: 0;
+    flex-grow: 1;
 }
 
 .card-overlay-pill {
-    display: inline-block;
-    background: #e6e6e6;
-    border-radius: 20px;
-    padding: 2px 5px;
-    font-size: 3px;
-    font-weight: 600;
-    color: #333;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+    background: #e0e0e0;
+    border-radius: 4px;
+    padding: 1.5px 4px;
+    font-size: 4px;
+    font-weight: 400;
+    color: #111;
 }
 
-/* ── BOTTOM: Image ── */
-.card-overlay-bottom {
-    height: 55%;
+/* ── BODY (Image) ── */
+.card-overlay-body {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    margin-top: 4px;
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+.card-overlay-img-wrap {
+    width: 50%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-overlay-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 1px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 2px;
 }
 
 /* ── FILTER: opacity fade keeps layout intact ── */
