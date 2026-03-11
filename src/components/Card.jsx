@@ -78,11 +78,11 @@ export default function Card({ card, isHidden, onOpen }) {
                 <span className="bracket bracket--bl" />
                 <span className="bracket bracket--br" />
 
-                {/* Top Header Row */}
+                {/* Top Header Row (Year | Caption | Title Pill) */}
                 <div className="card-overlay-header">
                     <span className="card-overlay-year">{card.year}</span>
-                    <h3 className="card-overlay-title">{card.title}</h3>
-                    <span className="card-overlay-pill">{card.categoryLabel}</span>
+                    <h3 className="card-overlay-title">{card.categoryLabel}</h3>
+                    <span className="card-overlay-pill">{card.title}</span>
                 </div>
 
                 {/* Centered Image Body */}
