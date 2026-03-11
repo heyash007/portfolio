@@ -1,0 +1,286 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #fff;
+    color: #111;
+    min-height: 100vh;
+}
+
+/* ── PAGE WRAPPER ── */
+.page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 64px 80px 80px;
+    gap: 80px;
+}
+
+/* ── TOP ROW: left | identity | right ── */
+.top-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+}
+
+/* ── SIDE COLUMNS ── */
+.side {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 64px;
+}
+
+/* ── IDENTITY (centre column) ── */
+.identity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    flex-shrink: 0;
+    width: 180px;
+    text-align: center;
+}
+
+.identity-name {
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: #111;
+    line-height: 1.2;
+}
+
+.identity-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.identity-nav a {
+    font-size: 11px;
+    font-weight: 400;
+    color: #bbb;
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+}
+
+.identity-nav a:hover,
+.identity-nav a.active {
+    color: #111;
+}
+
+/* ── BOTTOM ROW ── */
+.bottom-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+    gap: 0;
+}
+
+/* ── CARDS ── */
+.card {
+    position: relative;
+    background: #d9d9d9;
+    cursor: pointer;
+    flex-shrink: 0;
+    z-index: 1;
+    transform-origin: center center;
+    will-change: transform;
+    container-type: inline-size;
+
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+
+    transition: transform 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.32s ease,
+        opacity 0.6s ease;
+}
+
+.card>img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Size variants */
+.card {
+    width: 140px;
+    height: 140px;
+}
+
+.card--tall {
+    width: 150px;
+    height: 175px;
+}
+
+.card--lg {
+    width: 170px;
+    height: 195px;
+}
+
+.card--wide {
+    width: 185px;
+    height: 145px;
+}
+
+.card:hover {
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+    z-index: 50;
+}
+
+/* ── OVERLAY: title top, description bottom ── */
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.54);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8cqw;
+    opacity: 0;
+    transition: opacity 0.28s ease;
+    z-index: 4;
+    overflow: hidden;
+}
+
+.card:hover .card-overlay {
+    opacity: 1;
+}
+
+.card-overlay h3 {
+    font-size: 7.5cqw;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    align-self: flex-start;
+}
+
+.card-overlay p {
+    font-size: 6.8cqw;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.45;
+    align-self: flex-start;
+}
+
+/* ── FILTER: opacity fade keeps layout intact ── */
+.card.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ── DETAIL OVERLAY ── */
+.detail-overlay {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    padding: 0;
+
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(24px);
+    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.detail-overlay.is-open {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+}
+
+/* Back button */
+.detail-back {
+    position: fixed;
+    top: 28px;
+    left: 36px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #999;
+    padding: 0;
+    transition: color 0.2s;
+    z-index: 201;
+}
+
+.detail-back:hover {
+    color: #111;
+}
+
+/* Scrollable content area */
+.detail-content {
+    width: 100%;
+    max-width: 680px;
+    padding: 96px 0 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Image */
+.detail-image-wrap {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #e8e8e8;
+}
+
+.detail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Text block */
+.detail-text {
+    padding: 40px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.detail-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: #111;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.detail-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: #555;
+    line-height: 1.75;
+    margin: 0;
+    max-width: 560px;
+}
