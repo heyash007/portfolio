@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-const TARGET_LONG = 220 // px
+const TARGET_LONG = 280 // px - make card scale a bit larger so text is easily readable on hover
 
 const sizeClass = {
     default: '',
@@ -17,10 +17,14 @@ export default function Card({ card, isHidden, onOpen }) {
         if (!el) return
         const maxDim = Math.max(el.offsetWidth, el.offsetHeight)
         el.style.transform = `scale(${(TARGET_LONG / maxDim).toFixed(4)})`
+        el.style.zIndex = 50
     }
 
     function handleMouseLeave() {
-        if (ref.current) ref.current.style.transform = 'scale(1)'
+        if (ref.current) {
+            ref.current.style.transform = 'scale(1)'
+            ref.current.style.zIndex = 1
+        }
     }
 
     const classes = [
@@ -40,10 +44,35 @@ export default function Card({ card, isHidden, onOpen }) {
             onMouseLeave={handleMouseLeave}
             onClick={() => !isHidden && onOpen(card)}
         >
+            {/* Background Image (Normal State) */}
             <img src={card.image} alt={card.title} />
+
+            {/* Hover State Overlay - redesigned to match the minimal bracket layout */}
             <div className="card-overlay">
-                <h3>{card.title}</h3>
-                <p>{card.description.split('.')[0] + '.'}</p>
+                {/* Corner brackets */}
+                <span className="bracket bracket--tl" />
+                <span className="bracket bracket--tr" />
+                <span className="bracket bracket--bl" />
+                <span className="bracket bracket--br" />
+
+                {/* Top: Year + Title (right aligned) */}
+                <div className="card-overlay-top">
+                    <div className="card-overlay-meta">
+                        <span className="card-overlay-year">{card.year}</span>
+                        <h3 className="card-overlay-title">{card.title}</h3>
+                    </div>
+                </div>
+
+                {/* Middle: Secondary Description / Category Pill */}
+                <div className="card-overlay-middle">
+                    <p className="card-overlay-desc">{card.description}</p>
+                    <span className="card-overlay-pill">{card.categoryLabel}</span>
+                </div>
+
+                {/* Bottom: Smaller embedded image */}
+                <div className="card-overlay-bottom">
+                    <img src={card.image} alt={card.title} className="card-overlay-img" />
+                </div>
             </div>
         </div>
     )
