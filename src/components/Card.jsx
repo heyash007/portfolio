@@ -15,14 +15,37 @@ export default function Card({ card, isHidden, onOpen }) {
     function handleMouseEnter() {
         const el = ref.current
         if (!el) return
+
+        // 1. Calculate max safe target scale so we don't exceed screen size
         const maxDim = Math.max(el.offsetWidth, el.offsetHeight)
-        el.style.transform = `scale(${(TARGET_LONG / maxDim).toFixed(4)})`
+        const maxAllowed = Math.min(window.innerWidth, window.innerHeight) * 0.85
+        const actualTarget = Math.min(TARGET_LONG, maxAllowed)
+        const scale = (actualTarget / maxDim).toFixed(4)
+
+        // 2. Prevent viewport overflow by shifting transform-origin
+        const rect = el.getBoundingClientRect()
+        let originX = 'center'
+        let originY = 'center'
+
+        // Thresholds: if card's distance to edge is less than half the expanded growth, pin origin to edge
+        const growX = (el.offsetWidth * scale - el.offsetWidth) / 2
+        const growY = (el.offsetHeight * scale - el.offsetHeight) / 2
+
+        if (rect.left < growX) originX = 'left'
+        else if (window.innerWidth - rect.right < growX) originX = 'right'
+
+        if (rect.top < growY) originY = 'top'
+        else if (window.innerHeight - rect.bottom < growY) originY = 'bottom'
+
+        el.style.transformOrigin = `${originX} ${originY}`
+        el.style.transform = `scale(${scale})`
         el.style.zIndex = 50
     }
 
     function handleMouseLeave() {
         if (ref.current) {
             ref.current.style.transform = 'scale(1)'
+            // We leave transformOrigin as-is so it shrinks back smoothly from where it grew
             ref.current.style.zIndex = 1
         }
     }
