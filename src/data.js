@@ -2,14 +2,14 @@ const cards = [
     // Left side (top row)
     {
         id: 1,
-        title: 'Colour Study',
+        title: 'Hold Your Pee',
         description:
-            'A deep dive into chromatic relationships, tonal contrast, and the interplay between saturated hues and neutral ground.',
-        image: '/images/01.jpg',
-        category: 'visual',
-        categoryLabel: 'Visual Design',
-        year: '2024',
-        size: 'default',
+            'A fun, fast-paced card game where players compete to avoid breaking the seal. Features minimalist two-colour illustrations like this Geisha drink card.',
+        image: '/images/card-game.png',
+        category: 'graphic',
+        categoryLabel: 'Card Game',
+        year: '2025',
+        size: 'tall',
         side: 'left',
     },
     {
