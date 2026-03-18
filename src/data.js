@@ -5,7 +5,7 @@ const cards = [
         title: 'Hold Your Pee',
         description:
             'A fun, fast-paced card game where players compete to avoid breaking the seal. Features minimalist two-colour illustrations like this Geisha drink card.',
-        image: '/images/card-game.png',
+        image: '/images/fishes.svg',
         category: 'graphic',
         categoryLabel: 'Card Game',
         year: '2025',
