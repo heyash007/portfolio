@@ -8,6 +8,7 @@ const cards = [
         description:
             'An exploration of time-based visual language — how form travels, morphs, and communicates energy across frames.',
         image: `${BASE_URL}images/motion/millie_the_witch/Card.png`,
+        video: `${BASE_URL}videos/motion/milie_the_witch/witch_short.MP4`,
         category: 'motion',
         categoryLabel: 'Motion',
         year: '2024',

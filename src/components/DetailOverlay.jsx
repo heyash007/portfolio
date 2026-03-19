@@ -38,7 +38,18 @@ export default function DetailOverlay({ card, onClose }) {
             {card && (
                 <div className="detail-content">
                     <div className="detail-image-wrap">
-                        <img className="detail-img" src={card.image} alt={card.title} />
+                        {card.video ? (
+                            <video
+                                className="detail-img"
+                                src={card.video}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                            />
+                        ) : (
+                            <img className="detail-img" src={card.image} alt={card.title} />
+                        )}
                     </div>
                     <div className="detail-text">
                         <h1 className="detail-title">{card.title}</h1>

@@ -294,7 +294,7 @@ body {
 /* Scrollable content area */
 .detail-content {
     width: 100%;
-    max-width: 680px;
+    max-width: 900px;
     padding: 96px 0 100px;
     display: flex;
     flex-direction: column;
@@ -304,9 +304,19 @@ body {
 /* Image */
 .detail-image-wrap {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
-    background: #e8e8e8;
+    background: #fff;
+    position: relative;
+}
+
+/* Blurring edges via pseudo-element */
+.detail-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 20px 40px #fff;
+    pointer-events: none;
 }
 
 .detail-img {
@@ -322,6 +332,9 @@ body {
     display: flex;
     flex-direction: column;
     gap: 18px;
+    max-width: 680px;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .detail-title {
