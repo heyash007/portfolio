@@ -7,6 +7,7 @@ const sizeClass = {
     tall: 'card--tall',
     lg: 'card--lg',
     wide: 'card--wide',
+    ultraWide: 'card--ultra-wide',
 }
 
 export default function Card({ card, isHidden, onOpen }) {
@@ -19,7 +20,8 @@ export default function Card({ card, isHidden, onOpen }) {
         // 1. Calculate max safe target scale so we don't exceed screen size
         const maxDim = Math.max(el.offsetWidth, el.offsetHeight)
         const maxAllowed = Math.min(window.innerWidth, window.innerHeight) * 0.85
-        const actualTarget = Math.min(TARGET_LONG, maxAllowed)
+        const targetLong = card.expandTarget || TARGET_LONG
+        const actualTarget = Math.min(targetLong, maxAllowed)
         const scale = (actualTarget / maxDim).toFixed(4)
 
         // 2. Prevent viewport overflow by shifting transform-origin
@@ -72,12 +74,6 @@ export default function Card({ card, isHidden, onOpen }) {
 
             {/* Hover State Overlay - redesigned to match the minimal bracket layout */}
             <div className="card-overlay">
-                {/* Corner brackets */}
-                <span className="bracket bracket--tl" />
-                <span className="bracket bracket--tr" />
-                <span className="bracket bracket--bl" />
-                <span className="bracket bracket--br" />
-
                 {/* Top Header Row (Year | Caption | Title Pill) */}
                 <div className="card-overlay-header">
                     <span className="card-overlay-year">{card.year}</span>
