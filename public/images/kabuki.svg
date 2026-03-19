@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 700">
   <defs>
+    <style type="text/css">@import url('https://fonts.googleapis.com/css2?family=Italianno&amp;family=Orbitron:wght@400..900&amp;display=swap');
+</style>
     <style>
       .cls-1 {
         fill: #5196d2;
       }
 
       .cls-2 {
-        font-family: Apple-Chancery, 'Apple Chancery';
+        font-family: 'Italianno', Apple-Chancery, 'Apple Chancery';
         opacity: .5;
       }
 
@@ -24,7 +26,7 @@
       }
 
       .cls-3, .cls-6 {
-        font-family: Orbitron-Bold, Orbitron;
+        font-family: 'Orbitron', Orbitron-Bold, sans-serif;
         font-weight: 700;
         opacity: .3;
       }
