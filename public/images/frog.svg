@@ -2,9 +2,8 @@
 <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 700">
   <defs>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Italianno&family=Orbitron:wght@400..900&display=swap');
       .cls-1 {
-        font-family: 'Italianno', Apple-Chancery, 'Apple Chancery';
+        font-family: Apple-Chancery, 'Apple Chancery';
         opacity: .5;
       }
 
@@ -17,7 +16,7 @@
       }
 
       .cls-2, .cls-4 {
-        font-family: 'Orbitron', Orbitron-Bold, sans-serif;
+        font-family: Orbitron-Bold, Orbitron;
         font-weight: 700;
         opacity: .3;
       }
