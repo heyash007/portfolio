@@ -13,10 +13,9 @@ export default function SplashScreen({ onComplete }) {
             const sequence = [
                 { text: 'Welcome,\n\n\n\n', delayAfter: 1000 },
                 { text: 'This place is a living canvas\n', delayAfter: 500 },
-                { text: 'of', delayAfter: 500 },
-                { text: 'passion projects, ', delayAfter: 500 },
+                { text: 'of passion projects, ', delayAfter: 500 },
                 { text: 'works in progress, ', delayAfter: 500 },
-                { text: '\nand endless becoming.', delayAfter: 500 },
+                { text: 'and endless becoming.', delayAfter: 500 },
             ]
 
             let currentText = ''

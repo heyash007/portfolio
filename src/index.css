@@ -408,7 +408,7 @@ body {
 .splash-screen {
     position: fixed;
     inset: 0;
-    background: #000;
+    background: #fff;
     z-index: 9999;
     display: flex;
     align-items: center;
@@ -423,17 +423,19 @@ body {
 }
 
 .splash-text-container {
-    color: #fff;
-    /* Responsive font scaling */
-    font-size: clamp(24px, 4vw, 56px);
+    color: #000;
+    /* Responsive font scaling optimized for all orientations */
+    font-size: clamp(18px, 5.5vw, 84px);
     font-weight: 300;
-    /* Allow it to take up more than half the screen horizontally */
-    max-width: 80%;
+    width: 100%;
+    max-width: 90vw;
     text-align: left;
-    line-height: 1.4;
-    padding: 0 40px;
+    line-height: 1.35;
+    padding: 0 5vw;
     font-family: 'Inter', sans-serif;
     white-space: pre-wrap;
+    word-break: break-word;
+    /* Prevents overflow breakage on narrow mobile devices */
 }
 
 .splash-cursor {
