@@ -11,7 +11,7 @@ export default function SplashScreen({ onComplete }) {
 
         async function typeSequence() {
             const sequence = [
-                { text: 'Welcome,\n\n\n\n', delayAfter: 1000 },
+                { text: 'Welcome,\n \n', delayAfter: 1000 },
                 { text: 'This place is a living canvas\n', delayAfter: 500 },
                 { text: 'of passion projects, ', delayAfter: 500 },
                 { text: 'works in progress, ', delayAfter: 500 },
@@ -59,6 +59,7 @@ export default function SplashScreen({ onComplete }) {
                         key={index}
                         style={{ textAlign: index === 0 ? 'center' : 'center' }}
                     >
+                        {index === 0 ? <br /> : ""}
                         {line}
                         {index === arr.length - 1 && <span className="splash-cursor">|</span>}
                     </div>

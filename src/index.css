@@ -425,7 +425,7 @@ body {
 .splash-text-container {
     color: #000;
     /* Responsive font scaling optimized for all orientations */
-    font-size: clamp(14px, 4vw, 32px);
+    font-size: clamp(14px, 4vw, 28px);
     font-weight: 300;
     width: 100%;
     max-width: 90vw;
