@@ -57,7 +57,7 @@ export default function SplashScreen({ onComplete }) {
                 {displayedText.split('\n\n').map((line, index, arr) => (
                     <div
                         key={index}
-                        style={{ textAlign: index === 0 ? 'center' : 'left' }}
+                        style={{ textAlign: index === 0 ? 'center' : 'center' }}
                     >
                         {line}
                         {index === arr.length - 1 && <span className="splash-cursor">|</span>}
