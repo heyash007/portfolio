@@ -1,9 +1,33 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 export default function DetailOverlay({ card, cards = [], onNavigate, onClose }) {
     const isOpen = card !== null
 
     const [viewedAssetId, setViewedAssetId] = useState(null)
+    const scrollRef = useRef(null)
+    const [canScrollLeft, setCanScrollLeft] = useState(false)
+    const [canScrollRight, setCanScrollRight] = useState(false)
+
+    const checkScroll = () => {
+        if (scrollRef.current) {
+            const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current
+            setCanScrollLeft(scrollLeft > 0)
+            setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 5)
+        }
+    }
+
+    useEffect(() => {
+        checkScroll()
+        window.addEventListener('resize', checkScroll)
+        return () => window.removeEventListener('resize', checkScroll)
+    }, [card, isOpen])
+
+    const scrollGallery = (dir) => {
+        if (scrollRef.current) {
+            const shift = dir === 'right' ? 300 : -300
+            scrollRef.current.scrollBy({ left: shift, behavior: 'smooth' })
+        }
+    }
 
     useEffect(() => {
         if (card) setViewedAssetId(card.id)
@@ -116,24 +140,44 @@ export default function DetailOverlay({ card, cards = [], onNavigate, onClose })
                     {relatedCards.length > 1 && (
                         <div className="related-section">
                             <h3 className="related-title">Project Gallery</h3>
-                            <div className="related-grid">
-                                {relatedCards.map((c) => (
+                            <div className="related-grid-wrap" style={{ position: 'relative' }}>
+                                {canScrollLeft && (
                                     <button
-                                        key={c.id}
-                                        className={`related-preview-btn ${c.id === viewedAssetId ? 'is-active' : ''}`}
-                                        onClick={() => {
-                                            const scroller = document.querySelector('.detail-overlay')
-                                            if (scroller) scroller.scrollTo({ top: 0, behavior: 'smooth' })
-                                            setViewedAssetId(c.id)
-                                        }}
-                                        aria-label={`View ${c.title}`}
+                                        className="gallery-scroll-btn left"
+                                        onClick={() => scrollGallery('left')}
+                                        aria-label="Scroll left"
                                     >
-                                        <div className="related-img-wrap">
-                                            <img src={c.image} alt={c.title} />
-                                        </div>
-                                        <span className="related-item-title">{c.title}</span>
+                                        ←
                                     </button>
-                                ))}
+                                )}
+                                <div className="related-grid" ref={scrollRef} onScroll={checkScroll}>
+                                    {relatedCards.map((c) => (
+                                        <button
+                                            key={c.id}
+                                            className={`related-preview-btn ${c.id === viewedAssetId ? 'is-active' : ''}`}
+                                            onClick={() => {
+                                                const scroller = document.querySelector('.detail-overlay')
+                                                if (scroller) scroller.scrollTo({ top: 0, behavior: 'smooth' })
+                                                setViewedAssetId(c.id)
+                                            }}
+                                            aria-label={`View ${c.title}`}
+                                        >
+                                            <div className="related-img-wrap">
+                                                <img src={c.image} alt={c.title} />
+                                            </div>
+                                            <span className="related-item-title">{c.title}</span>
+                                        </button>
+                                    ))}
+                                </div>
+                                {canScrollRight && (
+                                    <button
+                                        className="gallery-scroll-btn right"
+                                        onClick={() => scrollGallery('right')}
+                                        aria-label="Scroll right"
+                                    >
+                                        →
+                                    </button>
+                                )}
                             </div>
                         </div>
                     )}

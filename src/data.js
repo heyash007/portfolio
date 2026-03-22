@@ -135,6 +135,63 @@ const cards = [
         side: 'bottom',
         related: [1],
     },
+    // --- SECONDARY GALLERY IMAGES (No 'side' property so they are hidden from the masonry grid) ---
+    {
+        id: 10,
+        title: 'Millie Animation Frame',
+        image: `${BASE_URL}images/motion/millie_the_witch/animation.png`,
+        category: 'motion',
+        group: 'millie',
+    },
+    {
+        id: 11,
+        title: 'Millie Character Design',
+        image: `${BASE_URL}images/motion/millie_the_witch/character.PNG`,
+        category: 'motion',
+        group: 'millie',
+    },
+    {
+        id: 12,
+        title: 'Millie Flowboard',
+        image: `${BASE_URL}images/motion/millie_the_witch/flow.PNG`,
+        category: 'motion',
+        group: 'millie',
+    },
+    {
+        id: 13,
+        title: 'Agent Cocoa Home',
+        image: `${BASE_URL}images/uiux/agent_cocoa/Home.png`,
+        category: 'uiux',
+        group: 'agent_cocoa',
+    },
+    {
+        id: 14,
+        title: 'Agent Cocoa Features',
+        image: `${BASE_URL}images/uiux/agent_cocoa/Feature.png`,
+        category: 'uiux',
+        group: 'agent_cocoa',
+    },
+    {
+        id: 15,
+        title: 'Agent Cocoa How it Works',
+        image: `${BASE_URL}images/uiux/agent_cocoa/how-it-works.png`,
+        category: 'uiux',
+        group: 'agent_cocoa',
+    },
+    {
+        id: 16,
+        title: 'Agent Cocoa Feature Detail',
+        image: `${BASE_URL}images/uiux/agent_cocoa/feature-detail.png`,
+        category: 'uiux',
+        group: 'agent_cocoa',
+    },
+    {
+        id: 17,
+        title: 'Agent Cocoa Pricing',
+        image: `${BASE_URL}images/uiux/agent_cocoa/pricing.png`,
+        category: 'uiux',
+        group: 'agent_cocoa',
+    },
 ]
 
 export default cards
