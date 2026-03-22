@@ -438,6 +438,12 @@ body {
     /* Prevents overflow breakage on narrow mobile devices */
 }
 
+@media (max-width: 768px) {
+    .splash-text-container {
+        font-size: clamp(12px, 4.5vw, 12px);
+    }
+}
+
 .splash-cursor {
     display: inline-block;
     width: 2px;
