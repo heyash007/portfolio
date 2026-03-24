@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <defs>
+    <style>
+      .border {
+        fill: none;
+        stroke: #c22f1d;
+        stroke-width: 28px;
+        stroke-miterlimit: 10;
+      }
+      .stamp {
+        fill: #c22f1d;
+      }
+    </style>
+  </defs>
+
+  <!-- Rounded square border -->
+  <rect class="border" x="20" y="20" width="460" height="460" rx="60" ry="60"/>
+
+  <!-- アア ユシ katakana as text using system fallback fonts -->
+  <text
+    x="250"
+    y="210"
+    text-anchor="middle"
+    font-size="175"
+    font-family="'Hiragino Mincho ProN', 'Yu Mincho', 'MS Mincho', 'Noto Serif JP', serif"
+    font-weight="bold"
+    fill="#c22f1d"
+    letter-spacing="8"
+  >アア</text>
+  <text
+    x="250"
+    y="395"
+    text-anchor="middle"
+    font-size="175"
+    font-family="'Hiragino Mincho ProN', 'Yu Mincho', 'MS Mincho', 'Noto Serif JP', serif"
+    font-weight="bold"
+    fill="#c22f1d"
+    letter-spacing="8"
+  >ユシ</text>
+</svg>
