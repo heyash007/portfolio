@@ -102,20 +102,8 @@ export default function DetailOverlay({ card, cards = [], onNavigate, onClose })
 
                     <div className="detail-meta">
                         <div className="meta-block">
-                            <span className="meta-label">YEAR</span>
-                            <span className="meta-value">{masterCard.year}</span>
-                        </div>
-                        <div className="meta-block">
-                            <span className="meta-label">ROLE</span>
-                            <span className="meta-value">{masterCard.role || '—'}</span>
-                        </div>
-                        <div className="meta-block">
                             <span className="meta-label">SKILLS</span>
                             <span className="meta-value">{masterCard.skills || '—'}</span>
-                        </div>
-                        <div className="meta-block">
-                            <span className="meta-label">TEAM</span>
-                            <span className="meta-value">{masterCard.team || '—'}</span>
                         </div>
                     </div>
 

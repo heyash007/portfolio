@@ -3,6 +3,7 @@ import cards from './data'
 import PortfolioGrid from './components/PortfolioGrid'
 import DetailOverlay from './components/DetailOverlay'
 import SplashScreen from './components/SplashScreen'
+import Footer from './components/Footer'
 
 export default function App() {
     const [activeFilter, setActiveFilter] = useState(null)
@@ -33,6 +34,7 @@ export default function App() {
                 onFilterChange={setActiveFilter}
                 onCardOpen={setOpenCard}
             />
+            <Footer />
             <DetailOverlay
                 card={openCard}
                 cards={filteredCards}

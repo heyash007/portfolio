@@ -1,107 +1,142 @@
+import { useEffect, useRef } from 'react';
+
+const fishGrid = [
+    [0,0,0,0,0,0,0,0,0,0,6,6,6,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,6,6,2,2,2,6,6,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,6,6,2,2,2,2,2,2,2,6,6,0,0,0,0,0,0,0],
+    [0,0,0,0,6,6,2,2,2,2,2,1,1,1,1,1,1,6,6,0,0,0,0,6],
+    [0,0,6,6,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,6,0,0,6,1],
+    [0,6,1,1,4,4,4,1,1,1,1,3,1,1,3,1,1,1,1,1,6,6,1,1],
+    [6,1,1,4,5,4,1,1,1,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1],
+    [6,1,1,4,4,4,1,1,1,1,3,3,3,3,1,1,1,1,1,1,1,1,1,6],
+    [0,6,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,6,6,3,1],
+    [0,0,6,6,1,1,1,1,3,3,3,3,3,3,3,1,1,1,1,6,0,0,6,3],
+    [0,0,0,0,6,6,1,1,1,1,1,1,1,1,1,1,1,6,6,0,0,0,0,6],
+    [0,0,0,0,0,0,6,6,3,3,3,3,3,3,3,6,6,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,6,6,3,3,3,6,6,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,6,6,6,0,0,0,0,0,0,0,0,0,0,0],
+];
+
+const drawPixelFish = (ctx, x, y, palette, facingRight, size = 110) => {
+    const rows = fishGrid.length;
+    const cols = fishGrid[0].length;
+    const pixelSize = size / cols;
+    
+    ctx.save();
+    ctx.translate(x, y);
+    if (facingRight) ctx.scale(-1, 1);
+    
+    fishGrid.forEach((row, r) => {
+        row.forEach((type, c) => {
+            if (type === 0) return;
+            
+            if (type === 1) ctx.fillStyle = palette.base;
+            else if (type === 2) ctx.fillStyle = palette.highlight;
+            else if (type === 3) ctx.fillStyle = palette.shadow;
+            else if (type === 4) ctx.fillStyle = '#FFFFFF';
+            else if (type === 5) ctx.fillStyle = '#111111';
+            else if (type === 6) ctx.fillStyle = palette.outline;
+            
+            ctx.fillRect(
+                (c - cols/2) * pixelSize, 
+                (r - rows/2) * pixelSize, 
+                pixelSize + 0.4, 
+                pixelSize + 0.4
+            );
+        });
+    });
+    ctx.restore();
+};
+
+const palettes = [
+    { base: '#000EFF', highlight: '#4D56FF', shadow: '#000A80', outline: '#0006CC' },
+    { base: '#14A043', highlight: '#48D96D', shadow: '#054D1F', outline: '#0D7A31' }
+];
+
 export default function Footer() {
-    const services = [
-        {
-            category: 'Brand Identity',
-            items: [
-                'Visual Identity Systems',
-                'Logo Design',
-                'Brand Guidelines',
-                'Brand Strategy',
-                'Social Design',
-            ],
-        },
-        {
-            category: 'UI/UX',
-            items: [
-                'User Interface Design',
-                'Design Systems',
-                'UI Animation & Interaction',
-            ],
-        },
-        {
-            category: 'Motion Design',
-            items: [
-                'Explainer Videos',
-                'Kinetic Animations',
-                'Social Media Animation',
-                'UI Motion Design',
-                'Motion for Web',
-                'Motion Toolkit',
-                'Commercials',
-                '3D Motion Design',
-            ],
-        },
-        {
-            category: 'Illustration',
-            items: [
-                'Illustration Systems',
-                'Character & Detail',
-                'Digital Visuals',
-            ],
-        },
-    ]
+    const canvasRef = useRef(null);
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        let animationFrameId;
+        const fish = [];
+        const numFish = 6;
+
+        const resizeCanvas = () => {
+            const rect = canvas.parentElement.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+        };
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        for (let i = 0; i < numFish; i++) {
+            const palette = palettes[Math.floor(Math.random() * palettes.length)];
+            const size = 30 + Math.random() * 40;
+            const speed = 0.5 + Math.random() * 1.5;
+            const facingRight = Math.random() > 0.5;
+            
+            fish.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                speed: facingRight ? speed : -speed,
+                palette,
+                size,
+                facingRight,
+                amplitude: 2 + Math.random() * 5,
+                frequency: 0.01 + Math.random() * 0.02,
+                offset: Math.random() * Math.PI * 2
+            });
+        }
+
+        const animate = (t) => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            fish.forEach(f => {
+                f.x += f.speed;
+                f.y += Math.sin(t * f.frequency + f.offset) * 0.5;
+
+                // Wrap around
+                if (f.x > canvas.width + f.size) f.x = -f.size;
+                if (f.x < -f.size) f.x = canvas.width + f.size;
+
+                drawPixelFish(ctx, f.x, f.y, f.palette, f.facingRight, f.size);
+            });
+
+            animationFrameId = requestAnimationFrame(animate);
+        };
+
+        animationFrameId = requestAnimationFrame(animate);
+
+        return () => {
+            cancelAnimationFrame(animationFrameId);
+            window.removeEventListener('resize', resizeCanvas);
+        };
+    }, []);
 
     return (
-        <footer className="footer">
-
-            {/* Logo + Services side by side */}
-            <div className="footer-top">
-                <div className="footer-logo-wrap">
-                    <img
-                        src="/images/favicon/footer-logo.svg"
-                        alt="Aayushi Singh"
-                        className="footer-logo-img"
-                    />
+        <footer className="site-footer">
+            <canvas ref={canvasRef} className="footer-fish-canvas"></canvas>
+            <div className="footer-content">
+                <div className="footer-top">
+                    <h2 className="footer-name font-departure-footer">AAYUSHI SINGH</h2>
+                    <p className="footer-coded-by font-eb-garamond-14">Coded by me and antigravity</p>
                 </div>
-
-                <div className="footer-services">
-                    <p className="footer-services-heading">Hire Me For</p>
-                    <hr className="footer-divider" />
-                    <div className="footer-services-grid">
-                        {services.map(({ category, items }) => (
-                            <div key={category} className="footer-service-col">
-                                <p className="footer-service-category">{category}</p>
-                                <ul>
-                                    {items.map((item) => (
-                                        <li key={item}>{item}</li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ))}
+                <div className="footer-bottom">
+                    <div className="footer-wish">
+                        <p className="font-eb-garamond-footer">Hope you had a good swim!</p>
+                    </div>
+                    <div className="footer-contact">
+                        <p className="font-eb-garamond-footer">Let's work together</p>
+                        <a href="mailto:contact@aayushi.design" className="footer-email font-eb-garamond-footer">contact@aayushi.design</a>
                     </div>
                 </div>
             </div>
-
-
-
-
-            {/* Email */}
-            <a className="footer-email" href="mailto:contact@aayushi.design">
-                contact@aayushi.design
-            </a>
-
-            {/* Bottom bar */}
-            <div className="footer-bottom">
-                <span>© {new Date().getFullYear()} Aayushi Singh</span>
-                <div className="footer-socials-col">
-                    <a href="https://twitter.com/ShinsukeKita00" target="_blank" rel="noopener noreferrer">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.261 5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
-                        <span>TWITTER</span>
-                    </a>
-                    <a href="mailto:contact@aayushi.design">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" /></svg>
-                        <span>EMAIL</span>
-                    </a>
-                    {/* <a href="https://instagram.com/aayushi.singh" target="_blank" rel="noopener noreferrer">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" /></svg>
-                        <span>INSTAGRAM</span>
-                    </a>
-                    <a href="https://facebook.com/aayushi.singh" target="_blank" rel="noopener noreferrer">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
-                        <span>FACEBOOK</span>
-                    </a> */}
-                </div>
-            </div>
         </footer>
-    )
+    );
 }
