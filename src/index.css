@@ -158,6 +158,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .about-right {
@@ -1348,5 +1349,282 @@ body {
 
     .footer-contact {
         text-align: left;
+    }
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — MAIN PORTFOLIO LAYOUT
+   ═══════════════════════════════════════ */
+
+/* ── Tablet (≤ 900px) ── */
+@media (max-width: 900px) {
+    .new-page-container {
+        padding: 16px 28px;
+    }
+
+    .new-header {
+        margin-bottom: 28px;
+    }
+
+    .new-nav {
+        gap: 20px;
+    }
+
+    /* About: switch to column */
+    .about-section {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .about-left {
+        flex: none;
+        width: 100%;
+    }
+
+    /* Scale puzzle to fit — board is 360px wide, container is 100% */
+    .ascii-art-placeholder {
+        width: 100%;
+        /* height tracks the scaled puzzle automatically */
+        height: auto;
+        aspect-ratio: 360 / 335;
+        overflow: hidden;
+        /* align-start so transform-origin: top left lines up */
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    /* Scale the 360px-wide board to fill whatever the container is */
+    .ascii-art-placeholder .puzzle-board-container {
+        transform-origin: top left;
+        transform: scale(calc((100vw - 56px) / 360));
+        flex-shrink: 0;
+    }
+
+    .about-sub-columns {
+        flex-wrap: wrap;
+        gap: 24px;
+        margin-top: 24px;
+        margin-bottom: 24px;
+    }
+
+    .sub-column {
+        flex: 1 1 140px;
+    }
+
+    /* Grid: 3 columns */
+    .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+}
+
+/* ── Mobile (≤ 600px) ── */
+@media (max-width: 600px) {
+    .new-page-container {
+        padding: 12px 16px;
+    }
+
+    .new-header {
+        margin-bottom: 20px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .new-logo {
+        width: 36px;
+        height: 36px;
+    }
+
+    .new-nav {
+        gap: 14px;
+    }
+
+    .ascii-art-placeholder {
+        /* Let aspect-ratio drive height on mobile too */
+        aspect-ratio: 360 / 335;
+        height: auto;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    /* Tighter scale on mobile */
+    .ascii-art-placeholder .puzzle-board-container {
+        transform-origin: top left;
+        transform: scale(calc((100vw - 32px) / 360));
+        flex-shrink: 0;
+    }
+
+    .about-sub-columns {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Grid: 2 columns */
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+        justify-items: center;
+    }
+
+    /* Cards: fill column width on mobile */
+    .card {
+        width: 100%;
+        max-width: 160px;
+    }
+
+    /* Detail overlay */
+    .detail-content {
+        padding: 60px 20px 80px;
+    }
+
+    .detail-header {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .detail-title {
+        font-size: 26px;
+    }
+}
+
+/* ── Small phones (≤ 400px) ── */
+@media (max-width: 400px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 140px;
+        height: 95px;
+    }
+
+    .new-nav {
+        gap: 10px;
+    }
+}
+
+/* ═══════════════════════════════════════
+   ABOUT PAGE (POLAROIDS)
+   ═══════════════════════════════════════ */
+
+.about-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    min-height: 60vh;
+    padding-top: 40px;
+    overflow: hidden;
+}
+
+.about-page-text {
+    text-align: center;
+    max-width: 600px;
+    margin-bottom: 60px;
+    z-index: 50;
+    pointer-events: none;
+}
+
+.about-page-heading {
+    font-family: 'Departure Mono', monospace;
+    font-size: 24px;
+    color: #000EFF;
+    margin-bottom: 16px;
+    text-transform: lowercase;
+}
+
+.about-page-body {
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    pointer-events: auto; /* Allow text selection */
+}
+
+.polaroid-stage {
+    position: relative;
+    width: 100%;
+    height: 600px; /* Big enough to scatter cards */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.polaroid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+    padding: 12px 12px 40px 12px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05);
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+    will-change: transform, z-index;
+    transition: box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.polaroid:active {
+    cursor: grabbing;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.polaroid--active {
+    /* Optional: give the most recently clicked one a subtle blue glow or highlight */
+    box-shadow: 0 8px 20px rgba(0, 14, 255, 0.15), 0 0 0 1px rgba(0, 14, 255, 0.1);
+}
+
+.polaroid-photo {
+    width: 200px;
+    height: 240px;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    pointer-events: none; /* Let the parent block handle drags */
+}
+
+.polaroid-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.polaroid-label {
+    position: absolute;
+    bottom: 12px;
+    left: 14px;
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    color: #666;
+    pointer-events: none;
+}
+
+/* Make Polaroids responsive */
+@media (max-width: 900px) {
+    .polaroid-stage {
+        height: 500px;
+        transform: scale(0.8);
+    }
+}
+
+@media (max-width: 600px) {
+    .about-page-heading {
+        font-size: 20px;
+    }
+    .about-page-body {
+        font-size: 16px;
+    }
+    .polaroid-stage {
+        height: 600px;
+        transform: scale(0.6);
+        margin-top: -50px;
     }
 }

@@ -14,6 +14,7 @@ export default function App() {
     useEffect(() => {
         function handleClick(e) {
             if (openCard) return                          // detail overlay is open — ignore
+            if (activeFilter === 'about') return          // about page is a hard route — ignore
             if (e.target.closest('.identity-nav')) return // click was inside old nav — ignore
             if (e.target.closest('.new-nav')) return       // click was inside new nav — ignore
             if (e.target.closest('.new-header')) return    // click was inside new header — ignore
@@ -21,7 +22,7 @@ export default function App() {
         }
         document.addEventListener('click', handleClick)
         return () => document.removeEventListener('click', handleClick)
-    }, [openCard])
+    }, [openCard, activeFilter])
 
     const filteredCards = activeFilter
         ? cards.filter((c) => c.category === activeFilter)

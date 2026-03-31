@@ -110,11 +110,11 @@ export default function DetailOverlay({ card, cards = [], onNavigate, onClose })
                     <hr className="detail-divider" />
 
                     <div className="detail-image-wrap">
-                        {activeAsset.video ? (
+                        {(activeAsset.video || activeAsset.coverVideo) ? (
                             <video
                                 className="detail-img"
-                                key={activeAsset.id} // force re-mount on swap so autoplay works
-                                src={activeAsset.video}
+                                key={activeAsset.id}
+                                src={activeAsset.video || activeAsset.coverVideo}
                                 autoPlay
                                 loop
                                 muted
@@ -151,7 +151,18 @@ export default function DetailOverlay({ card, cards = [], onNavigate, onClose })
                                             aria-label={`View ${c.title}`}
                                         >
                                             <div className="related-img-wrap">
-                                                <img src={c.image} alt={c.title} />
+                                                {c.coverVideo ? (
+                                                    <video
+                                                        src={c.coverVideo}
+                                                        muted
+                                                        loop
+                                                        autoPlay
+                                                        playsInline
+                                                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                                    />
+                                                ) : (
+                                                    <img src={c.image} alt={c.title} />
+                                                )}
                                             </div>
                                             <span className="related-item-title">{c.title}</span>
                                         </button>
