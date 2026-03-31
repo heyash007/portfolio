@@ -14,7 +14,9 @@ export default function App() {
     useEffect(() => {
         function handleClick(e) {
             if (openCard) return                          // detail overlay is open — ignore
-            if (e.target.closest('.identity-nav')) return // click was inside the nav — ignore
+            if (e.target.closest('.identity-nav')) return // click was inside old nav — ignore
+            if (e.target.closest('.new-nav')) return       // click was inside new nav — ignore
+            if (e.target.closest('.new-header')) return    // click was inside new header — ignore
             setActiveFilter(null)
         }
         document.addEventListener('click', handleClick)

@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Card from './Card'
+import VideoCard from './VideoCard'
 import PuzzleBoard from './PuzzleBoard'
 
 const NAV_ITEMS = [
@@ -10,9 +11,16 @@ const NAV_ITEMS = [
 ]
 
 export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onCardOpen }) {
+    const projectsRef = useRef(null)
+
     function handleNavClick(e, filter) {
         e.preventDefault()
-        onFilterChange(activeFilter === filter ? null : filter)
+        const next = activeFilter === filter ? null : filter
+        onFilterChange(next)
+        // Scroll to the cards section whenever a filter is selected
+        if (next !== null && projectsRef.current) {
+            projectsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
     }
 
     const isHidden = (card) => activeFilter !== null && card.category !== activeFilter
@@ -34,7 +42,7 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
                             key={filter}
                             href="#"
                             onClick={(e) => handleNavClick(e, filter)}
-                            className="nav-link font-eb-garamond-14 text-blue"
+                            className={`nav-link font-eb-garamond-14 text-blue${activeFilter === filter ? ' active' : ''}`}
                         >
                             {label}
                         </a>
@@ -94,21 +102,30 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
                     </div>
                 </section>
 
-                <section className="recent-projects-section">
+                <section className="recent-projects-section" ref={projectsRef}>
                     <div className="projects-header">
                         <h2 className="font-departure-15 text-blue" style={{ marginBottom: '4px' }}>RECENT PROJECTS</h2>
                         <p className="font-eb-garamond-14 text-black">Click to find more.</p>
                     </div>
 
                     <div className="projects-grid">
-                        {cards.map((card) => (
-                            <Card
-                                key={card.id}
-                                card={card}
-                                isHidden={isHidden(card)}
-                                onOpen={onCardOpen}
-                            />
-                        ))}
+                        {cards.map((card) =>
+                            card.coverVideo ? (
+                                <VideoCard
+                                    key={card.id}
+                                    card={card}
+                                    isHidden={isHidden(card)}
+                                    onOpen={onCardOpen}
+                                />
+                            ) : (
+                                <Card
+                                    key={card.id}
+                                    card={card}
+                                    isHidden={isHidden(card)}
+                                    onOpen={onCardOpen}
+                                />
+                            )
+                        )}
                     </div>
                 </section>
             </main>
