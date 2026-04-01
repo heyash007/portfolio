@@ -1,46 +1,47 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useInView } from 'framer-motion';
 
 const fishGrid = [
-    [0,0,0,0,0,0,0,0,0,0,6,6,6,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,6,6,2,2,2,6,6,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,6,6,2,2,2,2,2,2,2,6,6,0,0,0,0,0,0,0],
-    [0,0,0,0,6,6,2,2,2,2,2,1,1,1,1,1,1,6,6,0,0,0,0,6],
-    [0,0,6,6,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,6,0,0,6,1],
-    [0,6,1,1,4,4,4,1,1,1,1,3,1,1,3,1,1,1,1,1,6,6,1,1],
-    [6,1,1,4,5,4,1,1,1,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1],
-    [6,1,1,4,4,4,1,1,1,1,3,3,3,3,1,1,1,1,1,1,1,1,1,6],
-    [0,6,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,6,6,3,1],
-    [0,0,6,6,1,1,1,1,3,3,3,3,3,3,3,1,1,1,1,6,0,0,6,3],
-    [0,0,0,0,6,6,1,1,1,1,1,1,1,1,1,1,1,6,6,0,0,0,0,6],
-    [0,0,0,0,0,0,6,6,3,3,3,3,3,3,3,6,6,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,6,6,3,3,3,6,6,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,6,6,6,0,0,0,0,0,0,0,0,0,0,0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 2, 2, 2, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 6, 6, 2, 2, 2, 2, 2, 2, 2, 6, 6, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 6, 6, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 6, 6, 0, 0, 0, 0, 6],
+    [0, 0, 6, 6, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 0, 0, 6, 1],
+    [0, 6, 1, 1, 4, 4, 4, 1, 1, 1, 1, 3, 1, 1, 3, 1, 1, 1, 1, 1, 6, 6, 1, 1],
+    [6, 1, 1, 4, 5, 4, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1],
+    [6, 1, 1, 4, 4, 4, 1, 1, 1, 1, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6],
+    [0, 6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 6, 3, 1],
+    [0, 0, 6, 6, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 6, 0, 0, 6, 3],
+    [0, 0, 0, 0, 6, 6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 6, 0, 0, 0, 0, 6],
+    [0, 0, 0, 0, 0, 0, 6, 6, 3, 3, 3, 3, 3, 3, 3, 6, 6, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 3, 3, 3, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 
 const drawPixelFish = (ctx, x, y, palette, facingRight, size = 110) => {
     const rows = fishGrid.length;
     const cols = fishGrid[0].length;
     const pixelSize = size / cols;
-    
+
     ctx.save();
     ctx.translate(x, y);
     if (facingRight) ctx.scale(-1, 1);
-    
+
     fishGrid.forEach((row, r) => {
         row.forEach((type, c) => {
             if (type === 0) return;
-            
+
             if (type === 1) ctx.fillStyle = palette.base;
             else if (type === 2) ctx.fillStyle = palette.highlight;
             else if (type === 3) ctx.fillStyle = palette.shadow;
             else if (type === 4) ctx.fillStyle = '#FFFFFF';
             else if (type === 5) ctx.fillStyle = '#111111';
             else if (type === 6) ctx.fillStyle = palette.outline;
-            
+
             ctx.fillRect(
-                (c - cols/2) * pixelSize, 
-                (r - rows/2) * pixelSize, 
-                pixelSize + 0.4, 
+                (c - cols / 2) * pixelSize,
+                (r - rows / 2) * pixelSize,
+                pixelSize + 0.4,
                 pixelSize + 0.4
             );
         });
@@ -52,6 +53,43 @@ const palettes = [
     { base: '#000EFF', highlight: '#4D56FF', shadow: '#000A80', outline: '#0006CC' },
     { base: '#14A043', highlight: '#48D96D', shadow: '#054D1F', outline: '#0D7A31' }
 ];
+
+const TypewriterText = ({ text }) => {
+    const [displayedText, setDisplayedText] = useState("");
+    const containerRef = useRef(null);
+    const isInView = useInView(containerRef, { once: true, margin: "0px 0px -20px 0px" });
+
+    useEffect(() => {
+        if (!isInView) return;
+        
+        let i = 0;
+        const interval = setInterval(() => {
+            setDisplayedText(text.slice(0, i + 1));
+            i++;
+            if (i >= text.length) {
+                clearInterval(interval);
+            }
+        }, 60); // typing speed
+        return () => clearInterval(interval);
+    }, [isInView, text]);
+
+    return (
+        <span ref={containerRef} style={{ display: 'inline-flex', alignItems: 'center', width: `${text.length + 1.2}ch` }}>
+            <span style={{ whiteSpace: 'nowrap' }}>{displayedText}</span>
+            <motion.span
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
+                style={{ 
+                    display: 'inline-block', 
+                    width: '0.6em', 
+                    height: '1.2em', 
+                    backgroundColor: 'currentColor', 
+                    marginLeft: '4px'
+                }}
+            />
+        </span>
+    );
+};
 
 export default function Footer() {
     const canvasRef = useRef(null);
@@ -80,7 +118,7 @@ export default function Footer() {
             const size = 30 + Math.random() * 40;
             const speed = 0.5 + Math.random() * 1.5;
             const facingRight = Math.random() > 0.5;
-            
+
             fish.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
@@ -125,7 +163,9 @@ export default function Footer() {
             <div className="footer-content">
                 <div className="footer-top">
                     <h2 className="footer-name font-departure-footer">AAYUSHI SINGH</h2>
-                    <p className="footer-coded-by font-eb-garamond-14">Coded by me and antigravity</p>
+                    <p className="footer-coded-by font-menlo">
+                        <TypewriterText text="coded by me and antigravity" />
+                    </p>
                 </div>
                 <div className="footer-bottom">
                     <div className="footer-wish">

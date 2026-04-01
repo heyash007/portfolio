@@ -4,6 +4,7 @@ import VideoCard from './VideoCard'
 import PuzzleBoard from './PuzzleBoard'
 import AboutPage from './AboutPage'
 import ThemeToggle from './ThemeToggle'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const NAV_ITEMS = [
     { label: 'home', filter: null },
@@ -24,8 +25,9 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
         const next = filter === null ? null : (activeFilter === filter ? null : filter)
         onFilterChange(next)
 
-        // Scroll to the cards section whenever a project filter (visual/motion/uiux) is selected
-        if (next !== null && next !== 'about' && projectsRef.current) {
+        if (next === null) {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        } else if (next !== 'about' && projectsRef.current) {
             projectsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
         }
     }
@@ -69,7 +71,7 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
                         <section className="about-section">
                             <div className="about-left">
                                 <div className="puzzle-label" style={{
-                                    color: isPuzzleSolved ? '#111' : 'var(--accent-blue)',
+                                    color: isPuzzleSolved ? 'var(--text-primary)' : 'var(--accent-blue)',
                                     transition: 'color 0.3s ease',
                                 }}>
                                     {isPuzzleSolved ? 'BRAVO!' : 'happy solving'}
@@ -129,25 +131,28 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
                                 <p className="font-eb-garamond-14 text-black">Click to find more.</p>
                             </div>
 
-                            <div className="projects-grid">
-                                {cards.map((card) =>
-                                    card.coverVideo ? (
-                                        <VideoCard
-                                            key={card.id}
-                                            card={card}
-                                            isHidden={isHidden(card)}
-                                            onOpen={onCardOpen}
-                                        />
-                                    ) : (
-                                        <Card
-                                            key={card.id}
-                                            card={card}
-                                            isHidden={isHidden(card)}
-                                            onOpen={onCardOpen}
-                                        />
-                                    )
-                                )}
-                            </div>
+                            <motion.div layout className={`projects-grid ${activeFilter !== null ? 'filtered' : ''}`}>
+                                <AnimatePresence mode="popLayout">
+                                    {cards.map((card) => {
+                                        if (isHidden(card)) return null;
+                                        return card.coverVideo ? (
+                                            <VideoCard
+                                                key={card.id}
+                                                card={card}
+                                                isHidden={false}
+                                                onOpen={onCardOpen}
+                                            />
+                                        ) : (
+                                            <Card
+                                                key={card.id}
+                                                card={card}
+                                                isHidden={false}
+                                                onOpen={onCardOpen}
+                                            />
+                                        )
+                                    })}
+                                </AnimatePresence>
+                            </motion.div>
                         </section>
                     </>
                 )}

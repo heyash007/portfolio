@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { motion } from 'framer-motion'
 
 const TARGET_LONG = 450 // px - make card expand massively on hover
 
@@ -46,9 +47,8 @@ export default function Card({ card, isHidden, onOpen }) {
 
     function handleMouseLeave() {
         if (ref.current) {
-            ref.current.style.transform = 'scale(1)'
-            // We leave transformOrigin as-is so it shrinks back smoothly from where it grew
-            ref.current.style.zIndex = 1
+            ref.current.style.transform = '' // Yield transform control back to framer-motion
+            ref.current.style.zIndex = ''
         }
     }
 
@@ -61,7 +61,15 @@ export default function Card({ card, isHidden, onOpen }) {
         .join(' ')
 
     return (
-        <div
+        <motion.div
+            layout
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{
+                layout: { type: 'spring', stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 },
+            }}
             ref={ref}
             className={classes}
             data-category={card.category}
@@ -88,6 +96,6 @@ export default function Card({ card, isHidden, onOpen }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
