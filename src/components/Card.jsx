@@ -42,7 +42,7 @@ export default function Card({ card, isHidden, onOpen }) {
 
         el.style.transformOrigin = `${originX} ${originY}`
         el.style.transform = `scale(${scale})`
-        el.style.zIndex = 50
+        el.style.zIndex = 150
     }
 
     function handleMouseLeave() {
@@ -63,12 +63,13 @@ export default function Card({ card, isHidden, onOpen }) {
     return (
         <motion.div
             layout
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
+            exit={{ opacity: 0, scale: 0.95 }}
             transition={{
-                layout: { type: 'spring', stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 },
+                layout: { type: 'spring', stiffness: 180, damping: 40 },
+                opacity: { duration: 0.25, ease: 'easeInOut' },
+                scale: { duration: 0.25, ease: 'easeInOut' },
             }}
             ref={ref}
             className={classes}

@@ -4,6 +4,7 @@ import VideoCard from './VideoCard'
 import PuzzleBoard from './PuzzleBoard'
 import AboutPage from './AboutPage'
 import ThemeToggle from './ThemeToggle'
+import MusicPlayer from './MusicPlayer'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const NAV_ITEMS = [
@@ -45,6 +46,9 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
                             className="new-logo"
                         />
                     </a>
+                    <div style={{ marginLeft: '12px' }}>
+                        <MusicPlayer />
+                    </div>
                 </div>
                 <nav className="new-nav">
                     {NAV_ITEMS.map(({ label, filter }) => (
@@ -128,11 +132,15 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
                         <section className="recent-projects-section" ref={projectsRef}>
                             <div className="projects-header">
                                 <h2 className="font-departure-15 text-blue" style={{ marginBottom: '4px' }}>RECENT PROJECTS</h2>
-                                <p className="font-eb-garamond-14 text-black">Click to find more.</p>
+                                <p className="font-eb-garamond-14 text-black">Click on one to know more.</p>
                             </div>
 
-                            <motion.div layout className={`projects-grid ${activeFilter !== null ? 'filtered' : ''}`}>
-                                <AnimatePresence mode="popLayout">
+                            <motion.div
+                                layout
+                                transition={{ type: 'spring', stiffness: 180, damping: 40 }}
+                                className={`projects-grid ${activeFilter !== null ? 'filtered' : ''}`}
+                            >
+                                <AnimatePresence mode="sync">
                                     {cards.map((card) => {
                                         if (isHidden(card)) return null;
                                         return card.coverVideo ? (
