@@ -10,7 +10,7 @@ const aboutPhotos = [
         initialY: 40,
         description: {
             heading: 'I make things.',
-            body: "Art is the space where I think out loud — with charcoal, paint, or whatever's lying around. It's never precious. It's just honest.",
+            body: "Mostly to see what I’m thinking.",
         },
     },
     {
@@ -33,8 +33,8 @@ const aboutPhotos = [
         initialX: -60,
         initialY: 20,
         description: {
-            heading: 'I cook for people I love.',
-            body: 'Cooking taught me patience and restraint — knowing when to stop adding things. That lesson shows up in my design work constantly.',
+            heading: 'I love cooking.',
+            body: 'My dad thinks i make the best coconut pineapple cream cake in the world. And that makes me very happy. I love what i do, but i care even more about the people i do it for.',
         },
     },
     {
@@ -46,7 +46,7 @@ const aboutPhotos = [
         initialY: 50,
         description: {
             heading: 'Films are my obsession.',
-            body: 'Colour, composition, pacing — cinema is where I learned to feel design before I could name it. Tarkovsky, Wong Kar-wai, Miyazaki: my three pillars.',
+            body: 'I can talk about films all dayyyyy. I grew up on American classics with my mother — and somewhere along the way picked up Hong Kong action cinema, Kitano Takeshi, Scorsese, the soft warmth of Rob Reiner, and the stranger edges of Dogtooth and Amores Perros. Kramer vs. Kramer, though, sits somewhere closer to my heart. If you want to talk movies, please write to me. I will be more than happy to write back!',
         },
     },
     {
@@ -57,20 +57,20 @@ const aboutPhotos = [
         initialX: 300,
         initialY: 30,
         description: {
-            heading: 'I photograph small things.',
-            body: "Not grand landscapes — corners of rooms, the light at 6pm, a stranger's shoes. Photography trained my eye to find beauty in the unremarkable.",
+            heading: 'I photograph anything and everything.',
+            body: "This is a picture of the high school kids I photographed at a very pleasant sunset. They were so happy talking and watching the sun together, and I was just there quietly watching them from afar.",
         },
     },
     {
-        id: 'infinite_jest',
-        image: `${BASE_URL}images/about/infinite_jest.png`,
+        id: 'reading',
+        image: `${BASE_URL}images/about/joan_didion.jpg`,
         label: 'reading',
         initialRotation: 4,
-        initialX: 100,
-        initialY: 100,
+        initialX: 480,
+        initialY: 60,
         description: {
-            heading: 'David Foster Wallace',
-            body: "Books like Infinite Jest challenge and expand how I understand narrative structure and human complexity.",
+            heading: 'I enjoy reading',
+            body: "As a teen, I grew up reading every blog I could get my hands on — Ran Prieur, The Last Psychiatrist, Venkatesh Rao's Ribbonfarm. I still go back to all of them. This year I'm finishing all six volumes of Proust's In Search of Lost Time. The last book I read was The Unsayable by Annie G. Rogers.",
         },
     },
 ]
