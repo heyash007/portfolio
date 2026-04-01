@@ -125,21 +125,25 @@ body {
 .card {
   width: 140px;
   height: 140px;
+  aspect-ratio: 1 / 1;
 }
 
 .card--tall {
   width: 150px;
   height: 175px;
+  aspect-ratio: 15 / 17.5;
 }
 
 .card--lg {
   width: 170px;
   height: 195px;
+  aspect-ratio: 17 / 19.5;
 }
 
 .card--wide {
   width: 185px;
   height: 145px;
+  aspect-ratio: 18.5 / 14.5;
 }
 
 .card:hover {

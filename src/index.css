@@ -1474,6 +1474,15 @@ body {
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;
     }
+
+    /* Scale scatter pile on tablet */
+    .polaroid-pile {
+        transform: scale(0.65);
+        transform-origin: top center;
+    }
+    .polaroid-stage {
+        min-height: 320px;
+    }
 }
 
 /* ── Mobile (≤ 600px) ── */
@@ -1528,6 +1537,7 @@ body {
     .card {
         width: 100%;
         max-width: 160px;
+        height: auto !important;
     }
 
     /* Detail overlay */
@@ -1542,6 +1552,15 @@ body {
 
     .detail-title {
         font-size: 26px;
+    }
+
+    /* Scale scatter pile on mobile */
+    .polaroid-pile {
+        transform: scale(0.45);
+        transform-origin: top center;
+    }
+    .polaroid-stage {
+        min-height: 240px;
     }
 }
 
@@ -1624,11 +1643,9 @@ body {
 .polaroid-pile {
     position: relative;
     width: 1400px;
-    /* Big enough to fit -420px to +480px from center */
     min-width: 1400px;
     height: 480px;
     margin: 0 auto;
-    /* Centers the content if screen > 1400px */
 }
 
 .polaroid {

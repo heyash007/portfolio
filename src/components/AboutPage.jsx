@@ -22,6 +22,16 @@ export default function AboutPage() {
     const [description, setDescription] = useState(DEFAULT_DESCRIPTION)
 
     const dragRef = useRef(null)
+    const textRef = useRef(null)
+    const stageRef = useRef(null)
+
+    // Ensure the scatter pile starts perfectly centered horizontally on all screen sizes
+    useEffect(() => {
+        if (stageRef.current) {
+            const scrollMax = stageRef.current.scrollWidth - stageRef.current.clientWidth;
+            stageRef.current.scrollLeft = scrollMax / 2;
+        }
+    }, [])
 
     const onPointerDown = useCallback((e, id) => {
         const newZ = topZ + 1
@@ -63,6 +73,10 @@ export default function AboutPage() {
 
         const handleUp = () => {
             if (!dragRef.current) return
+            
+            if (!dragRef.current.moved) {
+                textRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+            }
             dragRef.current = null
         }
 
@@ -78,13 +92,13 @@ export default function AboutPage() {
     return (
         <main className="about-page">
             {/* Central text block */}
-            <div className="about-page-text">
+            <div className="about-page-text" ref={textRef}>
                 <h2 className="about-page-heading">{description.heading}</h2>
                 <p className="about-page-body">{description.body}</p>
             </div>
 
             {/* Polaroid scrolling area encompassing the scattered canvas */}
-            <div className="polaroid-stage">
+            <div className="polaroid-stage" ref={stageRef}>
                 <div className="polaroid-pile">
                     {photos.map((photo) => (
                         <div

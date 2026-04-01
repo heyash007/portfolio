@@ -2,19 +2,19 @@ import { useEffect, useState } from 'react'
 
 export default function ThemeToggle() {
     const [isDarkMode, setIsDarkMode] = useState(() => {
-        // Retrieve initial state from local storage or OS default
-        const saved = localStorage.getItem('theme')
+        // Retrieve initial state from local storage
+        const saved = localStorage.getItem('portfolio_theme')
         if (saved) return saved === 'dark'
-        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        return false // Always default to light mode
     })
 
     useEffect(() => {
         if (isDarkMode) {
             document.body.classList.add('dark-mode')
-            localStorage.setItem('theme', 'dark')
+            localStorage.setItem('portfolio_theme', 'dark')
         } else {
             document.body.classList.remove('dark-mode')
-            localStorage.setItem('theme', 'light')
+            localStorage.setItem('portfolio_theme', 'light')
         }
     }, [isDarkMode])
 
