@@ -9,7 +9,7 @@ const COLS = 3;
 /**
  * Grid-based Swapping Puzzle with Framer Motion layout animations.
  */
-const PuzzleBoard = () => {
+const PuzzleBoard = ({ onSolve }) => {
     const [tiles, setTiles] = useState([]);
     const [selectedId, setSelectedId] = useState(null);
     const [isSolved, setIsSolved] = useState(false);
@@ -38,7 +38,7 @@ const PuzzleBoard = () => {
             setShowGlow(true);
             const timer = setTimeout(() => {
                 setShowGlow(false);
-            }, 5000);
+            }, 1000); // Changed to 1 second
             return () => clearTimeout(timer);
         }
     }, [isSolved]);
@@ -67,6 +67,7 @@ const PuzzleBoard = () => {
     const checkSolved = (currentTiles) => {
         const solved = currentTiles.every((tile, index) => tile.id === index);
         setIsSolved(solved);
+        if (onSolve) onSolve(solved);
     };
 
     return (

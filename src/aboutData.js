@@ -6,7 +6,7 @@ const aboutPhotos = [
         image: `${BASE_URL}images/about/art.jpeg`,
         label: 'art',
         initialRotation: -8,
-        initialX: -420,
+        initialX: -250,
         initialY: 40,
         description: {
             heading: 'I make things.',
@@ -18,7 +18,7 @@ const aboutPhotos = [
         image: `${BASE_URL}images/about/childhood.jpeg`,
         label: 'growing up',
         initialRotation: 5,
-        initialX: -240,
+        initialX: -104,
         initialY: 60,
         description: {
             heading: 'I grew up curious.',
@@ -30,7 +30,7 @@ const aboutPhotos = [
         image: `${BASE_URL}images/about/cooking.jpeg`,
         label: 'cooking',
         initialRotation: -3,
-        initialX: -60,
+        initialX: 42,
         initialY: 20,
         description: {
             heading: 'I love cooking.',
@@ -42,7 +42,7 @@ const aboutPhotos = [
         image: `${BASE_URL}images/about/films.jpeg`,
         label: 'films',
         initialRotation: 7,
-        initialX: 120,
+        initialX: 188,
         initialY: 50,
         description: {
             heading: 'Films are my obsession.',
@@ -54,7 +54,7 @@ const aboutPhotos = [
         image: `${BASE_URL}images/about/photography.jpeg`,
         label: 'photography',
         initialRotation: -5,
-        initialX: 300,
+        initialX: 334,
         initialY: 30,
         description: {
             heading: 'I photograph anything and everything.',

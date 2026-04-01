@@ -3,8 +3,10 @@ import Card from './Card'
 import VideoCard from './VideoCard'
 import PuzzleBoard from './PuzzleBoard'
 import AboutPage from './AboutPage'
+import ThemeToggle from './ThemeToggle'
 
 const NAV_ITEMS = [
+    { label: 'home', filter: null },
     { label: 'visual', filter: 'visual' },
     { label: 'motion', filter: 'motion' },
     { label: 'ui/ux', filter: 'uiux' },
@@ -13,13 +15,17 @@ const NAV_ITEMS = [
 
 export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onCardOpen }) {
     const projectsRef = useRef(null)
+    const [isPuzzleSolved, setIsPuzzleSolved] = useState(false)
 
     function handleNavClick(e, filter) {
         e.preventDefault()
-        const next = activeFilter === filter ? null : filter
+        // If clicking home (filter===null), set it to null.
+        // Otherwise, if it's already active, we can leave it or toggle it (toggle behavior is fine).
+        const next = filter === null ? null : (activeFilter === filter ? null : filter)
         onFilterChange(next)
-        // Scroll to the cards section whenever a filter is selected
-        if (next !== null && projectsRef.current) {
+
+        // Scroll to the cards section whenever a project filter (visual/motion/uiux) is selected
+        if (next !== null && next !== 'about' && projectsRef.current) {
             projectsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
         }
     }
@@ -30,12 +36,13 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
         <div className="new-page-container">
             <header className="new-header">
                 <div className="logo-group">
-                    <img
-                        src="/images/logo/namesealBLUE.svg"
-                        alt="Logo"
-                        className="new-logo"
-                    />
-                    {/* <span className="logo-text">SINGH</span> */}
+                    <a href="#" onClick={(e) => handleNavClick(e, null)}>
+                        <img
+                            src="/images/logo/namesealBLUE.svg"
+                            alt="Logo"
+                            className="new-logo"
+                        />
+                    </a>
                 </div>
                 <nav className="new-nav">
                     {NAV_ITEMS.map(({ label, filter }) => (
@@ -48,6 +55,9 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
                             {label}
                         </a>
                     ))}
+                    <div style={{ paddingLeft: '12px', display: 'flex', alignItems: 'center' }}>
+                        <ThemeToggle />
+                    </div>
                 </nav>
             </header>
 
@@ -58,9 +68,15 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
                     <>
                         <section className="about-section">
                             <div className="about-left">
-                                <div className="puzzle-label">happy solving</div>
+                                <div className="puzzle-label" style={{
+                                    color: isPuzzleSolved ? '#111' : 'var(--accent-blue)',
+                                    transition: 'color 0.3s ease',
+                                }}>
+                                    {isPuzzleSolved ? 'BRAVO!' : 'happy solving'}
+                                </div>
+
                                 <div className="ascii-art-placeholder">
-                                    <PuzzleBoard />
+                                    <PuzzleBoard onSolve={setIsPuzzleSolved} />
                                 </div>
                             </div>
 

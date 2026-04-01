@@ -7,7 +7,7 @@ const DEFAULT_DESCRIPTION = {
 }
 
 export default function AboutPage() {
-    // Track position + rotation per photo
+    // Load the user's specific scattered cluster coordinates as initial positions
     const [photos, setPhotos] = useState(() =>
         aboutPhotos.map((p) => ({
             ...p,
@@ -21,30 +21,27 @@ export default function AboutPage() {
     const [topZ, setTopZ] = useState(aboutPhotos.length)
     const [description, setDescription] = useState(DEFAULT_DESCRIPTION)
 
-    // Drag state stored in a ref so event listeners don't capture stale state
     const dragRef = useRef(null)
 
     const onPointerDown = useCallback((e, id) => {
         const newZ = topZ + 1
         setTopZ(newZ)
         setPhotos((prev) =>
-            prev.map((p) =>
-                p.id === id ? { ...p, zIndex: newZ } : p
-            )
+            prev.map((p) => (p.id === id ? { ...p, zIndex: newZ } : p))
         )
         dragRef.current = {
             id,
             startX: e.clientX,
             startY: e.clientY,
+            baseX: photos.find(p => p.id === id)?.x || 0,
+            baseY: photos.find(p => p.id === id)?.y || 0,
             moved: false,
         }
 
-        // Trigger description update immediately on click/drag start
-        const photo = aboutPhotos.find((p) => p.id === id)
+        const photo = photos.find((p) => p.id === id)
         setActiveId(id)
         if (photo) setDescription(photo.description)
-
-    }, [topZ])
+    }, [topZ, photos])
 
     useEffect(() => {
         const handleMove = (e) => {
@@ -54,33 +51,18 @@ export default function AboutPage() {
             if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
                 dragRef.current.moved = true
             }
-            const { id } = dragRef.current
+            const { id, baseX, baseY } = dragRef.current
             setPhotos((prev) =>
                 prev.map((p) =>
                     p.id === id
-                        ? { ...p, x: p.initialX + dx, y: p.initialY + dy }
+                        ? { ...p, x: baseX + dx, y: baseY + dy }
                         : p
                 )
             )
         }
 
-        const handleUp = (e) => {
+        const handleUp = () => {
             if (!dragRef.current) return
-            const { id, startX, startY, moved } = dragRef.current
-
-            const dx = e.clientX - startX
-            const dy = e.clientY - startY
-
-            // Apply state updates inside setPhotos to ensure accurate synchronization
-            setPhotos((prev) => {
-                const nextPhotos = prev.map((p) =>
-                    p.id === id
-                        ? { ...p, initialX: p.initialX + dx, initialY: p.initialY + dy }
-                        : p
-                )
-                return nextPhotos
-            })
-
             dragRef.current = null
         }
 
@@ -101,25 +83,26 @@ export default function AboutPage() {
                 <p className="about-page-body">{description.body}</p>
             </div>
 
-            {/* Polaroid scatter area */}
+            {/* Polaroid scrolling area encompassing the scattered canvas */}
             <div className="polaroid-stage">
-                {photos.map((photo) => (
-                    <div
-                        key={photo.id}
-                        className={`polaroid${activeId === photo.id ? ' polaroid--active' : ''}`}
-                        style={{
-                            transform: `translate(calc(-50% + ${photo.x}px), calc(-50% + ${photo.y}px)) rotate(${photo.rotation}deg)`,
-                            zIndex: photo.zIndex,
-                        }}
-                        onPointerDown={(e) => onPointerDown(e, photo.id)}
-                    // removed inline move/up bindings
-                    >
-                        <div className="polaroid-photo">
-                            <img src={photo.image} alt={photo.label} draggable={false} />
+                <div className="polaroid-pile">
+                    {photos.map((photo) => (
+                        <div
+                            key={photo.id}
+                            className={`polaroid${activeId === photo.id ? ' polaroid--active' : ''}`}
+                            style={{
+                                transform: `translate(calc(-50% + ${photo.x}px), calc(-50% + ${photo.y}px)) rotate(${photo.rotation}deg)`,
+                                zIndex: photo.zIndex,
+                            }}
+                            onPointerDown={(e) => onPointerDown(e, photo.id)}
+                        >
+                            <div className="polaroid-photo">
+                                <img src={photo.image} alt={photo.label} draggable={false} />
+                            </div>
+                            <span className="polaroid-label">{photo.label}</span>
                         </div>
-                        <span className="polaroid-label">{photo.label}</span>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </main>
     )
