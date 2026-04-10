@@ -58,14 +58,20 @@ const cards = [
         side: 'bottom',
     },
 
-    // 4. Millie Animation Frame
+    // 4. System-on-Modules Animation
     {
-        id: 10,
-        title: 'Millie Animation Frame',
-        image: `${BASE_URL}images/motion/millie_the_witch/animation.png`,
+        id: 21,
+        title: 'System-on-Modules Animation',
+        description:
+            'An animation of a system-on-modules. I also created the illustration for it.',
+        image: `${BASE_URL}images/motion/millie_the_witch/embeddedSytem.gif`,
         category: 'motion',
-        categoryLabel: 'Animation',
-        group: 'millie',
+        categoryLabel: 'Motion',
+        group: 'som',
+        year: '2024',
+        role: 'Motion Designer & Illustrator',
+        skills: 'Illustrator, After effects',
+        team: 'Solo',
     },
 
     // 5. Character Silhouette (new)
@@ -153,6 +159,13 @@ const cards = [
         group: 'agent_cocoa',
     },
     {
+        id: 10,
+        title: 'Millie Animation Frame',
+        image: `${BASE_URL}images/motion/millie_the_witch/animation.png`,
+        category: 'motion',
+        group: 'millie',
+    },
+    {
         id: 17,
         title: 'Agent Cocoa Pricing',
         image: `${BASE_URL}images/uiux/agent_cocoa/pricing.png`,
@@ -178,6 +191,20 @@ const cards = [
         size: 'wide',
         side: 'bottom',
         related: [3],
+    },
+
+    // EcoFlink Logo
+    {
+        id: 22,
+        title: 'EcoFlink Logo',
+        description:
+            'A modern, organic visual identity and logo design for the EcoFlink supermarket chain, emphasizing sustainability, freshness, and approachability.',
+        image: `${BASE_URL}images/visual/ecoFlink/ECOFLINK_VectorLogoDesign.png`,
+        category: 'visual',
+        group: 'ecoflink',
+        role: 'Brand Designer',
+        skills: 'Typography, Logo Design',
+        team: 'Solo',
     },
 
     // Cool Cat Logo
