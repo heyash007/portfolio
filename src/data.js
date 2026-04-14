@@ -64,7 +64,7 @@ const cards = [
         title: 'System-on-Modules Animation',
         description:
             'An animation of a system-on-modules. I also created the illustration for it.',
-        image: `${BASE_URL}images/motion/millie_the_witch/embeddedSytem.gif`,
+        coverVideo: `${BASE_URL}images/motion/millie_the_witch/embeddedSytem.mp4`,
         category: 'motion',
         categoryLabel: 'Motion',
         group: 'som',
