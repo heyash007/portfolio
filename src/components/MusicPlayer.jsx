@@ -52,7 +52,7 @@ export default function MusicPlayer() {
             />
             <button 
                 onClick={togglePlay} 
-                className="music-btn"
+                className={`music-btn ${isPlaying ? 'playing' : ''}`}
                 aria-label="Toggle Music"
             >
                 <div className="music-note-wrap">
@@ -66,6 +66,9 @@ export default function MusicPlayer() {
                       <rect x="6" y="6" width="14" height="2" fill="currentColor"/>
                     </svg>
                 </div>
+                <span className="music-btn-text">
+                    {isPlaying ? 'now playing' : 'click to listen'}
+                </span>
             </button>
         </div>
     );
