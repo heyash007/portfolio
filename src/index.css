@@ -158,6 +158,10 @@ body {
     gap: 6px;
 }
 
+.music-container {
+    margin-left: 12px;
+}
+
 .logo-text {
     font-family: 'Departure Mono', monospace;
     font-size: 13px;
@@ -1398,6 +1402,15 @@ body {
 }
 
 @media (max-width: 768px) {
+    .music-container {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-left: 0;
+        z-index: 1000;
+    }
+
     .site-footer {
         padding: 60px 20px 80px;
     }

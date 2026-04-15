@@ -46,7 +46,7 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
                             className="new-logo"
                         />
                     </a>
-                    <div style={{ marginLeft: '12px' }}>
+                    <div className="music-container">
                         <MusicPlayer />
                     </div>
                 </div>
