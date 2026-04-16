@@ -33,7 +33,6 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
         }
     }
 
-    const isHidden = (card) => activeFilter !== null && card.category !== activeFilter
 
     return (
         <div className="new-page-container">
@@ -141,9 +140,8 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
                                 className={`projects-grid ${activeFilter !== null ? 'filtered' : ''}`}
                             >
                                 <AnimatePresence mode="sync">
-                                    {cards.map((card) => {
-                                        if (isHidden(card)) return null;
-                                        return card.coverVideo ? (
+                                    {cards.map((card) => (
+                                        card.coverVideo ? (
                                             <VideoCard
                                                 key={card.id}
                                                 card={card}
@@ -158,7 +156,7 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
                                                 onOpen={onCardOpen}
                                             />
                                         )
-                                    })}
+                                    ))}
                                 </AnimatePresence>
                             </motion.div>
                         </section>

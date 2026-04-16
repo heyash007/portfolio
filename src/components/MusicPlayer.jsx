@@ -56,7 +56,6 @@ export default function MusicPlayer() {
                 aria-label="Toggle Music"
             >
                 <div className="music-note-wrap">
-                    {/* SVG 8-bit connected 8th note — slightly larger 30px wrapper */}
                     <svg className={`pixel-note ${isPlaying ? 'dancing' : ''}`} viewBox="0 0 24 24" shapeRendering="crispEdges">
                       <rect x="3" y="15" width="5" height="4" fill="currentColor"/>
                       <rect x="6" y="6" width="2" height="11" fill="currentColor"/>
@@ -66,9 +65,6 @@ export default function MusicPlayer() {
                       <rect x="6" y="6" width="14" height="2" fill="currentColor"/>
                     </svg>
                 </div>
-                <span className="music-btn-text">
-                    {isPlaying ? 'now playing' : 'click to listen'}
-                </span>
             </button>
         </div>
     );

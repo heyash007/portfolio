@@ -1402,15 +1402,6 @@ body {
 }
 
 @media (max-width: 768px) {
-    .music-container {
-        position: fixed;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        margin-left: 0;
-        z-index: 1000;
-    }
-
     .site-footer {
         padding: 60px 20px 80px;
     }
@@ -1758,61 +1749,22 @@ body {
 }
 
 /* ═══════════════════════════════════════
-   MUSIC PLAYER (8-BIT)
+   MUSIC PLAYER (TYPOGRAPHIC TOGGLE)
    ═══════════════════════════════════════ */
 .music-btn {
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 4px 12px var(--shadow-light);
-    border-radius: 999px;
+    background: transparent;
+    border: none;
+    padding: 0;
     cursor: pointer;
-    color: var(--text-primary);
-    padding: 4px 16px 4px 6px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    justify-content: center;
-    transition: all 0.3s ease;
     outline: none;
-}
-
-body.dark-mode .music-btn {
-    background: rgba(60, 60, 60, 0.3);
-    border-color: rgba(255, 255, 255, 0.1);
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-primary);
+    transition: transform 0.2s;
 }
 
 .music-btn:hover {
-    background: rgba(255, 255, 255, 0.5);
-    border-color: rgba(255, 255, 255, 0.8);
-    transform: translateY(-1px);
-}
-
-body.dark-mode .music-btn:hover {
-    background: rgba(80, 80, 80, 0.4);
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-.music-btn.playing {
-    color: var(--accent-blue);
-    background: rgba(255, 255, 255, 0.6);
-    border-color: rgba(0, 14, 255, 0.2);
-}
-
-body.dark-mode .music-btn.playing {
-    color: var(--accent-blue);
-    background: rgba(40, 40, 70, 0.5);
-    border-color: rgba(102, 119, 255, 0.3);
-}
-
-.music-btn-text {
-    font-family: 'Departure Mono', monospace;
-    font-size: 11px;
-    text-transform: lowercase;
-    letter-spacing: 0.05em;
-    white-space: nowrap;
-    opacity: 0.8;
+    transform: scale(1.05);
 }
 
 .music-note-wrap {
@@ -1839,6 +1791,11 @@ body.dark-mode .music-btn.playing {
     50%, 74.9% { transform: translateY(0) scaleX(-1); }
     75%, 99.9% { transform: translateY(-2px) scaleX(-1); }
     100% { transform: translateY(0) scaleX(1); }
+}
+
+.music-btn.playing {
+    opacity: 1;
+    color: var(--accent-blue);
 }
 
 /* Exclamation removed */

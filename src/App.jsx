@@ -24,6 +24,10 @@ export default function App() {
         return () => document.removeEventListener('click', handleClick)
     }, [openCard, activeFilter])
 
+    const gridCards = activeFilter
+        ? cards.filter((c) => c.category === activeFilter)
+        : cards.slice(0, 4)
+
     const filteredCards = activeFilter
         ? cards.filter((c) => c.category === activeFilter)
         : cards
@@ -32,7 +36,7 @@ export default function App() {
         <>
             {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
             <PortfolioGrid
-                cards={cards}
+                cards={gridCards}
                 activeFilter={activeFilter}
                 onFilterChange={setActiveFilter}
                 onCardOpen={setOpenCard}
