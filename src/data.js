@@ -21,6 +21,24 @@ const cards = [
         related: [9],
     },
 
+    // Cremee Fresh
+    {
+        id: 24,
+        title: 'Cremee Fresh',
+        description:
+            'A comprehensive web experience and menu design for an artisanal bakery, focusing on responsive layouts, dietary filtering, and a premium aesthetic.',
+        image: `${BASE_URL}images/uiux/cremee_fresh/cakewebsite1.png`,
+        category: 'uiux',
+        categoryLabel: 'Web UI/UX',
+        group: 'cremee_fresh',
+        year: '2026',
+        role: 'Product Designer',
+        skills: 'UI/UX, Responsive Design, User Flows',
+        team: 'Solo',
+        size: 'wide',
+        side: 'right',
+    },
+
     // 2. Agent Cocoa 2024
     {
         id: 3,
@@ -303,6 +321,40 @@ const cards = [
         year: '2025',
         size: 'tall',
         side: 'bottom',
+    },
+
+    // Cremee Fresh sub-cards
+    {
+        id: 25,
+        title: 'Cremee Fresh Menu',
+        image: `${BASE_URL}images/uiux/cremee_fresh/cakewebsite2.png`,
+        category: 'uiux',
+        categoryLabel: 'Web UI/UX',
+        group: 'cremee_fresh',
+    },
+    {
+        id: 26,
+        title: 'Cremee Fresh Breads',
+        image: `${BASE_URL}images/uiux/cremee_fresh/cakewebsite3.png`,
+        category: 'uiux',
+        categoryLabel: 'Web UI/UX',
+        group: 'cremee_fresh',
+    },
+    {
+        id: 27,
+        title: 'Cremee Fresh Snacks',
+        image: `${BASE_URL}images/uiux/cremee_fresh/cakewebsite4.png`,
+        category: 'uiux',
+        categoryLabel: 'Web UI/UX',
+        group: 'cremee_fresh',
+    },
+    {
+        id: 28,
+        title: 'Cremee Fresh Footer',
+        image: `${BASE_URL}images/uiux/cremee_fresh/cakewebsite5.png`,
+        category: 'uiux',
+        categoryLabel: 'Web UI/UX',
+        group: 'cremee_fresh',
     },
 ]
 

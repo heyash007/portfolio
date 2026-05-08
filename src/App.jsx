@@ -26,7 +26,7 @@ export default function App() {
 
     const gridCards = activeFilter
         ? cards.filter((c) => c.category === activeFilter)
-        : cards.slice(0, 4)
+        : cards.slice(0, 5)
 
     const filteredCards = activeFilter
         ? cards.filter((c) => c.category === activeFilter)
