@@ -19,24 +19,24 @@ const cards = [
         side: 'left',
     },
 
-    // 1. Millie the Witch (keep first as is)
+    // 2. Agent Cocoa 2024
     {
-        id: 1,
-        title: 'Millie the Witch',
+        id: 3,
+        title: 'Agent Cocoa',
         description:
-            'An exploration of time-based visual language — how form travels, morphs, and communicates energy across frames.',
-        image: `${BASE_URL}images/motion/millie_the_witch/intro.png`,
-        video: `${BASE_URL}videos/motion/milie_the_witch/witch_short.MP4`,
-        category: 'motion',
-        categoryLabel: 'Animation',
-        group: 'millie',
+            'From user research and journey mapping through wireframes, prototypes, and a final high-fidelity design system built for calm, accessible experience.',
+        image: `${BASE_URL}images/uiux/agent_cocoa/cocoa-ai.png`,
+        category: 'uiux',
+        categoryLabel: 'Web UI/UX',
+        group: 'agent_cocoa',
         year: '2024',
-        role: 'Motion Designer',
-        skills: 'After Effects, Illustrator, Photoshop, Character Design, Animation',
-        team: 'Solo',
-        size: 'tall',
-        side: 'left',
-        related: [9],
+        role: 'Product Designer',
+        skills: 'UI/UX, Wireframing, Prototyping, Figma',
+        team: 'Aayushi Singh',
+        expandTarget: 800,
+        size: 'ultraWide',
+        side: 'right',
+        related: [8],
     },
 
     // NISA (Digital Catalogue & Artist Management)
@@ -75,24 +75,24 @@ const cards = [
         side: 'right',
     },
 
-    // 2. Agent Cocoa 2024
+    // 1. Millie the Witch
     {
-        id: 3,
-        title: 'Agent Cocoa',
+        id: 1,
+        title: 'Millie the Witch',
         description:
-            'From user research and journey mapping through wireframes, prototypes, and a final high-fidelity design system built for calm, accessible experience.',
-        image: `${BASE_URL}images/uiux/agent_cocoa/cocoa-ai.png`,
-        category: 'uiux',
-        categoryLabel: 'Web UI/UX',
-        group: 'agent_cocoa',
+            'An exploration of time-based visual language — how form travels, morphs, and communicates energy across frames.',
+        image: `${BASE_URL}images/motion/millie_the_witch/intro.png`,
+        video: `${BASE_URL}videos/motion/milie_the_witch/witch_short.MP4`,
+        category: 'motion',
+        categoryLabel: 'Animation',
+        group: 'millie',
         year: '2024',
-        role: 'Product Designer',
-        skills: 'UI/UX, Wireframing, Prototyping, Figma',
-        team: 'Aayushi Singh',
-        expandTarget: 800,
-        size: 'ultraWide',
-        side: 'right',
-        related: [8],
+        role: 'Motion Designer',
+        skills: 'After Effects, Illustrator, Photoshop, Character Design, Animation',
+        team: 'Solo',
+        size: 'tall',
+        side: 'left',
+        related: [9],
     },
 
     // 3. Hold Your Pee: Drink Card (video)
