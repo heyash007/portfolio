@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
+import allCards from '../data'
 
 export default function DetailOverlay({ card, cards = [], onNavigate, onClose }) {
     const isOpen = card !== null
@@ -35,7 +36,7 @@ export default function DetailOverlay({ card, cards = [], onNavigate, onClose })
 
     // Grouping logic for the image gallery
     const relatedCards = card && card.group
-        ? cards.filter((c) => c.group === card.group)
+        ? allCards.filter((c) => c.group === card.group)
         : card
             ? [card]
             : []
@@ -44,7 +45,7 @@ export default function DetailOverlay({ card, cards = [], onNavigate, onClose })
     const masterCard = relatedCards.length > 0 ? relatedCards[0] : card
 
     // The currently viewed asset for the cinematic media block
-    const activeAsset = cards.find((c) => c.id === viewedAssetId) || card
+    const activeAsset = allCards.find((c) => c.id === viewedAssetId) || card
 
     // Compute unique projects array for bottom pagination (collapsing groups into a single entry)
     const uniqueProjects = cards.reduce((acc, c) => {
@@ -59,6 +60,46 @@ export default function DetailOverlay({ card, cards = [], onNavigate, onClose })
     const currentIndex = masterCard ? uniqueProjects.findIndex((c) => c.id === masterCard.id) : -1
     const prevCard = currentIndex > 0 ? uniqueProjects[currentIndex - 1] : null
     const nextCard = currentIndex >= 0 && currentIndex < uniqueProjects.length - 1 ? uniqueProjects[currentIndex + 1] : null
+
+    const handleNextSlide = () => {
+        if (relatedCards.length > 1) {
+            const idx = relatedCards.findIndex((c) => c.id === viewedAssetId)
+            if (idx >= 0 && idx < relatedCards.length - 1) {
+                setViewedAssetId(relatedCards[idx + 1].id)
+            } else if (nextCard) {
+                onNavigate(nextCard)
+            }
+        } else if (nextCard) {
+            onNavigate(nextCard)
+        }
+    }
+
+    const handlePrevSlide = () => {
+        if (relatedCards.length > 1) {
+            const idx = relatedCards.findIndex((c) => c.id === viewedAssetId)
+            if (idx > 0) {
+                setViewedAssetId(relatedCards[idx - 1].id)
+            } else if (prevCard) {
+                onNavigate(prevCard)
+            }
+        } else if (prevCard) {
+            onNavigate(prevCard)
+        }
+    }
+
+    // Keyboard navigation for arrow keys to switch gallery slides & projects
+    useEffect(() => {
+        if (!isOpen) return
+        const handleKeyDown = (e) => {
+            if (e.key === 'ArrowRight') {
+                handleNextSlide()
+            } else if (e.key === 'ArrowLeft') {
+                handlePrevSlide()
+            }
+        }
+        document.addEventListener('keydown', handleKeyDown)
+        return () => document.removeEventListener('keydown', handleKeyDown)
+    }, [isOpen, viewedAssetId, relatedCards, nextCard, prevCard])
 
     // Escape key handler
     useEffect(() => {
@@ -77,6 +118,9 @@ export default function DetailOverlay({ card, cards = [], onNavigate, onClose })
             document.body.style.overflow = ''
         }
     }, [isOpen])
+
+    const hasNext = (relatedCards.length > 1 && relatedCards.findIndex((c) => c.id === viewedAssetId) < relatedCards.length - 1) || !!nextCard
+    const hasPrev = (relatedCards.length > 1 && relatedCards.findIndex((c) => c.id === viewedAssetId) > 0) || !!prevCard
 
     return (
         <div
@@ -110,6 +154,28 @@ export default function DetailOverlay({ card, cards = [], onNavigate, onClose })
                     <hr className="detail-divider" />
 
                     <div className="detail-image-wrap">
+                        {hasPrev && (
+                            <button
+                                className="detail-gallery-nav-btn prev"
+                                onClick={handlePrevSlide}
+                                aria-label="Previous slide"
+                            >
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                    <path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </button>
+                        )}
+                        {hasNext && (
+                            <button
+                                className="detail-gallery-nav-btn next"
+                                onClick={handleNextSlide}
+                                aria-label="Next slide"
+                            >
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                    <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </button>
+                        )}
                         {(activeAsset.video || activeAsset.coverVideo) ? (
                             <video
                                 className="detail-img"
@@ -158,10 +224,9 @@ export default function DetailOverlay({ card, cards = [], onNavigate, onClose })
                                                         loop
                                                         autoPlay
                                                         playsInline
-                                                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                                     />
                                                 ) : (
-                                                    <img src={c.image} alt={c.title} />
+                                                     <img src={c.image} alt={c.title} />
                                                 )}
                                             </div>
                                             <span className="related-item-title">{c.title}</span>
