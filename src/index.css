@@ -1897,3 +1897,207 @@ body {
         right: 12px;
     }
 }
+
+/* ── CASE STUDY & PROCESS SECTION ── */
+.case-study-section {
+    width: 100%;
+    margin-top: 80px;
+    padding-top: 60px;
+    border-top: 1px solid var(--overlay-border);
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.case-study-main-title {
+    font-family: 'Departure Mono', monospace;
+    font-size: 20px;
+    letter-spacing: 0.05em;
+    color: var(--accent-blue);
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+.case-study-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--overlay-border);
+}
+
+.case-study-subtitle {
+    font-family: 'EB Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.25;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.case-study-intro {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.case-study-meta-inline {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.case-study-meta-item {
+    font-size: 13px;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+}
+
+.case-study-meta-label {
+    font-family: 'Departure Mono', monospace;
+    color: var(--accent-blue);
+    font-size: 11px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.case-study-meta-value {
+    color: var(--text-primary);
+    font-weight: 400;
+}
+
+.case-study-content {
+    max-width: 800px;
+    margin-top: 30px;
+}
+
+.case-study-summary-para {
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--text-primary);
+    margin: 0 0 32px 0;
+    font-style: normal;
+}
+
+.case-study-section-block {
+    margin-bottom: 48px;
+}
+
+.case-study-section-title {
+    font-family: 'Departure Mono', monospace;
+    font-size: 16px;
+    color: var(--accent-blue);
+    text-transform: uppercase;
+    margin: 0 0 20px 0;
+    font-weight: 400;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding-bottom: 6px;
+}
+
+.dark-mode .case-study-section-title {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.case-study-para {
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-primary);
+    margin: 0 0 16px 0;
+}
+
+.case-study-list {
+    margin: 0 0 24px 0;
+    padding-left: 24px;
+    list-style-type: decimal;
+}
+
+.case-study-list.nested {
+    list-style-type: disc;
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.case-study-list-item {
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    padding-left: 4px;
+}
+
+.case-study-list-item::marker {
+    font-family: 'Departure Mono', monospace;
+    font-size: 12px;
+    color: var(--accent-blue);
+}
+
+.case-study-subsections {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 20px;
+}
+
+.case-study-subsection {
+    padding-left: 16px;
+    border-left: 2px solid var(--accent-blue);
+}
+
+.case-study-subsection-title {
+    font-family: 'Departure Mono', monospace;
+    font-size: 13px;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    margin: 0 0 12px 0;
+    font-weight: 400;
+}
+
+/* Responsive Styles for Case Study */
+@media (max-width: 900px) {
+    .case-study-header {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .case-study-meta-grid {
+        width: 100%;
+        flex: none;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 600px) {
+    .case-study-section {
+        margin-top: 50px;
+        padding-top: 40px;
+    }
+    
+    .case-study-subtitle {
+        font-size: 22px;
+    }
+    
+    .case-study-summary-para {
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+    
+    .case-study-section-title {
+        font-size: 14px;
+    }
+    
+    .case-study-para,
+    .case-study-list-item {
+        font-size: 15px;
+    }
+}

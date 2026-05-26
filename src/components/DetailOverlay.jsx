@@ -246,6 +246,76 @@ export default function DetailOverlay({ card, cards = [], onNavigate, onClose })
                         </div>
                     )}
 
+                    {/* Case Study Section */}
+                    {masterCard.caseStudy && (
+                        <div className="case-study-section">
+                            <h2 className="case-study-main-title">Case Study and Process</h2>
+                            
+                            <div className="case-study-header">
+                                <h3 className="case-study-subtitle">{masterCard.caseStudy.subtitle}</h3>
+                                <p className="case-study-intro">{masterCard.caseStudy.intro}</p>
+                                <div className="case-study-meta-inline">
+                                    {masterCard.caseStudy.meta.map((m, idx) => (
+                                        <div key={idx} className="case-study-meta-item">
+                                            <span className="case-study-meta-label">{m.label}:</span>
+                                            <span className="case-study-meta-value">{m.value}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="case-study-content">
+                                {masterCard.caseStudy.summaryParagraphs.map((p, idx) => (
+                                    <p key={idx} className="case-study-summary-para">{p}</p>
+                                ))}
+
+                                {masterCard.caseStudy.sections.map((section, idx) => (
+                                    <div key={idx} className="case-study-section-block">
+                                        <h4 className="case-study-section-title">{section.title}</h4>
+                                        {section.content.map((item, itemIdx) => {
+                                            if (typeof item === 'string') {
+                                                return <p key={itemIdx} className="case-study-para">{item}</p>
+                                            } else if (item.type === 'list') {
+                                                return (
+                                                    <ul key={itemIdx} className="case-study-list">
+                                                        {item.items.map((li, liIdx) => (
+                                                            <li key={liIdx} className="case-study-list-item">{li}</li>
+                                                        ))}
+                                                    </ul>
+                                                )
+                                            } else if (item.type === 'subsections') {
+                                                return (
+                                                    <div key={itemIdx} className="case-study-subsections">
+                                                        {item.items.map((sub, subIdx) => (
+                                                            <div key={subIdx} className="case-study-subsection">
+                                                                <h5 className="case-study-subsection-title">{sub.title}</h5>
+                                                                {sub.content.map((p, pIdx) => {
+                                                                    if (typeof p === 'string') {
+                                                                        return <p key={pIdx} className="case-study-para">{p}</p>
+                                                                    } else if (p.type === 'list') {
+                                                                        return (
+                                                                            <ul key={pIdx} className="case-study-list nested">
+                                                                                {p.items.map((li, liIdx) => (
+                                                                                    <li key={liIdx} className="case-study-list-item">{li}</li>
+                                                                                ))}
+                                                                            </ul>
+                                                                        )
+                                                                    }
+                                                                    return null
+                                                                })}
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                )
+                                            }
+                                            return null
+                                        })}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
                     <div className="detail-footer">
                         <div className="footer-nav footer-nav-prev">
                             {prevCard && (

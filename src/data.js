@@ -1,15 +1,206 @@
 const BASE_URL = import.meta.env.BASE_URL;
 
+const nisaCaseStudy = {
+    subtitle: 'NISA Talent — Digital Catalogue',
+    intro: 'A six-slide digital catalogue for a boutique artist management agency in India',
+    meta: [
+        { label: 'Year', value: '2026' },
+        { label: 'Role', value: 'Sole designer & copywriter' },
+        { label: 'Skills', value: 'Brand strategy, editorial design, copywriting' },
+        { label: 'Client', value: 'NISA Talent, Delhi' },
+        { label: 'Deliverable', value: 'Cover system + 6-slide catalogue PDF' }
+    ],
+    summaryParagraphs: [
+        'NISA Talent represents performing artists for live events across India and international stages. The founder wanted a digital catalogue he could send to event organisers, brands, and prospective clients to introduce the agency and its roster.'
+    ],
+    sections: [
+        {
+            title: 'The Problem',
+            content: [
+                'Most artist management catalogues in India look the same. Statistics on the cover, icon grids for art forms, "Why Choose Us" bullet lists, stock imagery of microphones and stages which had a vendor Pitch feel to it rather than introductions to a curated agency.',
+                'NISA had a different kind of business — smaller roster, deeper relationships, a founder who cared about how artists were placed rather than just how often. The catalogue needed to reflect that.'
+            ]
+        },
+        {
+            title: 'Research',
+            content: [
+                'Before designing anything, I spent time looking at how other artist management and booking agencies presented themselves, both in India and internationally. The patterns were clear:',
+                {
+                    type: 'list',
+                    items: [
+                        'Indian agencies leaned heavily on credentials — client logos, statistics, lists of celebrities they\'d worked with. The visual language was loud and dense, designed to impress event organisers quickly.',
+                        'Larger international agencies (CAA, WME, United Talent) barely had public catalogues at all. Their websites were quiet, confident, almost minimal, the agency itself was the credential.',
+                        'Boutique European agencies (especially in fashion, classical music, and theatre) treated their introductory materials like magazine spreads. Editorial typography, restrained colour, photography as identity.'
+                    ]
+                },
+                'The gap was obvious. India didn\'t have a visual reference for an agency that wanted to position itself as boutique and curated rather than big and loud. That gap became the opportunity.',
+                'I also reviewed adjacent industries — fashion lookbooks, art gallery catalogues, classical music programmes, and small-press publications to understand how editorial design conveys credibility without bullet points or statistics.'
+            ]
+        },
+        {
+            title: 'The Opportunity',
+            content: [
+                'Based on the research, I chose to design the catalogue like a small magazine rather than a sales deck. A document that signalled craft before it tried to sell anything — built around editorial restraint rather than visual density.',
+                'That framing shaped everything that followed:',
+                {
+                    type: 'list',
+                    items: [
+                        'Editorial typography over corporate sans-serif',
+                        'One restrained accent colour, used sparingly',
+                        'Typographic indices instead of icon grids',
+                        'Short paragraphs instead of bulleted lists',
+                        'A deliberately low word count per slide'
+                    ]
+                }
+            ]
+        },
+        {
+            title: 'Design Values',
+            content: [
+                {
+                    type: 'subsections',
+                    items: [
+                        {
+                            title: '1. Specificity over warmth',
+                            content: [
+                                'Generic agency language doesn\'t build trust — it dilutes it. "We brief artists ahead of the event, coordinate logistics with the venue, and stay reachable throughout the night" reads warmer than "we cherish every artist," because it\'s actually describing how the agency works. Adjectives like bespoke, curated, world-class were cut unless they earned their place.'
+                            ]
+                        },
+                        {
+                            title: '2. Echoes across slides',
+                            content: [
+                                'Phrases planted early reappeared later in slightly different form. "A house, not a directory" on Slide 2 set up "A house built on taste" on Slide 5. "The artist we promised" on Slide 5 echoed "the artist on the stage feels like the one you imagined" on Slide 4. Internal echoes made six independent spreads feel like one document.'
+                            ]
+                        },
+                        {
+                            title: '3. Restraint as identity',
+                            content: [
+                                'The strongest thing the design could do was leave space alone. The cover\'s empty green panel does as much work as the wordmark itself. Restraint became the brand\'s visual signature.'
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            title: 'Design Goals',
+            content: [
+                {
+                    type: 'list',
+                    items: [
+                        'Goal 01 — Build a cover that anchored the brand: Strong enough to set the tone for the catalogue, flexible enough to extend into social templates and future touchpoints.',
+                        'Goal 02 — Make twelve art forms readable in one slide: Without resorting to an icon grid or a wall of text.',
+                        'Goal 03 — Translate the founder\'s five-step process into something visual: While keeping the voice she\'d written it in.',
+                        'Goal 04 — Hold one consistent voice across copy and design: So the catalogue read as a single document rather than six independent slides.'
+                    ]
+                }
+            ]
+        },
+        {
+            title: 'Solution',
+            content: [
+                {
+                    type: 'subsections',
+                    items: [
+                        {
+                            title: '1. Five cover mockups, one chosen',
+                            content: [
+                                'I designed five cover directions before the final one was selected. Each tested a different visual hypothesis:',
+                                {
+                                    type: 'list',
+                                    items: [
+                                        'Cream + impressionist band painting — warm, communal',
+                                        'White + cobalt sketched jazz band — confident and minimalist',
+                                        'Forest green + textured oil-painting trumpet portrait — chosen',
+                                        'Crimson red + the same portrait — dramatic and loud',
+                                        'Royal blue + a vibrant multicoloured portrait — energetic but visually loud against a quieter interior'
+                                    ]
+                                },
+                                'The green cover was selected because the typography and the image worked with each other rather than against each other. It was also the only version that felt like an agency rather than an event flyer.'
+                            ]
+                        },
+                        {
+                            title: '2. The six slides',
+                            content: [
+                                {
+                                    type: 'list',
+                                    items: [
+                                        '01 Manifesto. One sentence, big, in serif. No bullets. A single italic gold accent.',
+                                        '02 Who we are. A grid of green-tinted artist photos with a short paragraph.',
+                                        '03 The roster. A typographic index of twelve art forms in two numbered columns with small-caps contextual tags. Footer note "and more…" to leave room for the roster to grow.',
+                                        '04 Our process. Five steps, laid out like a film script. The last step in gold italic to signal the emotional close.',
+                                        '05 A house built on taste. Three short paragraphs explaining what made NISA different. No "Why Us" header.',
+                                        '06 Get in touch. Mirrored the cover layout — split panel, portrait on one side, contact details on the other.'
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            title: '3. The copy',
+                            content: [
+                                'This took longer than the design itself. Almost every line of the catalogue was rewritten and refined against the brand voice. The rules that emerged:',
+                                {
+                                    type: 'list',
+                                    items: [
+                                        'Cut every empty adjective unless it earned its place',
+                                        'Replace sentimental phrasing with operational detail',
+                                        'Keep paragraphs short — never more than three sentences',
+                                        'Plant phrases that could echo across slides'
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+                {
+                    title: 'Final Takeaways',
+                    content: [
+                        {
+                            type: 'subsections',
+                            items: [
+                                {
+                                    title: '1. The voice decision is the design decision.',
+                                    content: [
+                                        'Once the brand voice was clear — boutique, editorial, restrained — every design choice answered itself. Typography, layout, colour, word count. The hardest part of the project was getting the voice right early. Everything downstream got easier.'
+                                    ]
+                                },
+                                {
+                                    title: '2. Lock the visual system before slide two.',
+                                    content: [
+                                        'Midway through, I explored a lighter photo-led system before returning to the editorial direction. It cost me a few hours of redoing slides already in progress. Next time the visual system gets locked before the second slide goes into Figma.'
+                                    ]
+                                },
+                                {
+                                    title: '3. Restraint is harder to defend than density.',
+                                    content: [
+                                        'Empty space can read as "unfinished" if you don\'t show why it\'s working. The most useful technique was building a denser alternative version and placing it next to the restrained one — seeing them side by side made the case for restraint without me needing to argue it.'
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: 'Acknowledgements',
+                    content: [
+                        'Thanks to the NISA founder for trusting the brand voice and being open to iteration on the copy. And to a few designer friends who reviewed early covers and gave me honest feedback on which ones weren\'t working.'
+                    ]
+                }
+    ]
+};
+
 const cards = [
-    // 0. MOCKUPS FOR NISA (First Project)
+    // 0. BRAND STRATEGY FOR NISA (First Project)
     {
         id: 35,
-        title: 'MOCKUPS FOR NISA',
+        title: 'BRAND STRATEGY FOR NISA',
         description:
             'A curated showcase of design mockups, visual styles, and typographic directions created for NISA. This presentation highlights different creative paths explored for the client after a deliberate discovery call and research.',
         image: `${BASE_URL}images/visual/mockups_for_nisa/nisaOILpaintstyle.png`,
         category: 'visual',
-        categoryLabel: 'Brand Mockups',
+        categoryLabel: 'Brand Strategy',
         group: 'mockups_for_nisa',
         year: '2026',
         role: 'Brand & Visual Designer',
@@ -17,6 +208,7 @@ const cards = [
         team: 'Solo',
         size: 'wide',
         side: 'left',
+        caseStudy: nisaCaseStudy,
     },
 
     // 2. Agent Cocoa 2024
@@ -55,6 +247,7 @@ const cards = [
         team: 'Solo',
         size: 'wide',
         side: 'left',
+        caseStudy: nisaCaseStudy,
     },
 
     // Cremee Fresh
@@ -421,33 +614,33 @@ const cards = [
         group: 'nisa',
     },
 
-    // MOCKUPS FOR NISA sub-cards
+    // BRAND STRATEGY FOR NISA sub-cards
     {
         id: 38,
         title: 'Alternative Blue Illustration Mockup',
         image: `${BASE_URL}images/visual/mockups_for_nisa/nisabluedifferent_illustartion.png`,
-        categoryLabel: 'Brand Mockups',
+        categoryLabel: 'Brand Strategy',
         group: 'mockups_for_nisa',
     },
     {
         id: 39,
         title: 'Green Oil Painting Mockup',
         image: `${BASE_URL}images/visual/mockups_for_nisa/nisaGreenMockup.png`,
-        categoryLabel: 'Brand Mockups',
+        categoryLabel: 'Brand Strategy',
         group: 'mockups_for_nisa',
     },
     {
         id: 36,
         title: 'Blue Typographic Mockup',
         image: `${BASE_URL}images/visual/mockups_for_nisa/NisaBlueFont1.png`,
-        categoryLabel: 'Brand Mockups',
+        categoryLabel: 'Brand Strategy',
         group: 'mockups_for_nisa',
     },
     {
         id: 37,
         title: 'Red Typographic Mockup',
         image: `${BASE_URL}images/visual/mockups_for_nisa/nisaRedFont1.png`,
-        categoryLabel: 'Brand Mockups',
+        categoryLabel: 'Brand Strategy',
         group: 'mockups_for_nisa',
     },
 ]
