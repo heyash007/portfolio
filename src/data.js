@@ -1,6 +1,24 @@
 const BASE_URL = import.meta.env.BASE_URL;
 
 const cards = [
+    // 0. MOCKUPS FOR NISA (First Project)
+    {
+        id: 35,
+        title: 'MOCKUPS FOR NISA',
+        description:
+            'A curated showcase of design mockups, visual styles, and typographic directions created for NISA. This presentation highlights different creative paths explored for the client after a deliberate discovery call and research.',
+        image: `${BASE_URL}images/visual/mockups_for_nisa/nisaOILpaintstyle.png`,
+        category: 'visual',
+        categoryLabel: 'Brand Mockups',
+        group: 'mockups_for_nisa',
+        year: '2026',
+        role: 'Brand & Visual Designer',
+        skills: 'Brand Identity, Mockup Design, Visual Curation, Design Research',
+        team: 'Solo',
+        size: 'wide',
+        side: 'left',
+    },
+
     // 1. Millie the Witch (keep first as is)
     {
         id: 1,
@@ -401,6 +419,36 @@ const cards = [
         image: `${BASE_URL}images/visual/nisa/nisa_slide_6.png`,
         categoryLabel: 'Digital Catalogue',
         group: 'nisa',
+    },
+
+    // MOCKUPS FOR NISA sub-cards
+    {
+        id: 38,
+        title: 'Alternative Blue Illustration Mockup',
+        image: `${BASE_URL}images/visual/mockups_for_nisa/nisabluedifferent_illustartion.png`,
+        categoryLabel: 'Brand Mockups',
+        group: 'mockups_for_nisa',
+    },
+    {
+        id: 39,
+        title: 'Green Oil Painting Mockup',
+        image: `${BASE_URL}images/visual/mockups_for_nisa/nisaGreenMockup.png`,
+        categoryLabel: 'Brand Mockups',
+        group: 'mockups_for_nisa',
+    },
+    {
+        id: 36,
+        title: 'Blue Typographic Mockup',
+        image: `${BASE_URL}images/visual/mockups_for_nisa/NisaBlueFont1.png`,
+        categoryLabel: 'Brand Mockups',
+        group: 'mockups_for_nisa',
+    },
+    {
+        id: 37,
+        title: 'Red Typographic Mockup',
+        image: `${BASE_URL}images/visual/mockups_for_nisa/nisaRedFont1.png`,
+        categoryLabel: 'Brand Mockups',
+        group: 'mockups_for_nisa',
     },
 ]
 
