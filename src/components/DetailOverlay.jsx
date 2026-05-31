@@ -34,6 +34,21 @@ export default function DetailOverlay({ card, cards = [], onNavigate, onClose })
         if (card) setViewedAssetId(card.id)
     }, [card])
 
+    const [expandedSections, setExpandedSections] = useState({ 0: true })
+
+    useEffect(() => {
+        if (card) {
+            setExpandedSections({ 0: true })
+        }
+    }, [card])
+
+    const toggleSection = (idx) => {
+        setExpandedSections((prev) => ({
+            ...prev,
+            [idx]: !prev[idx],
+        }))
+    }
+
     // Grouping logic for the image gallery
     const relatedCards = card && card.group
         ? allCards.filter((c) => c.group === card.group)
@@ -269,49 +284,71 @@ export default function DetailOverlay({ card, cards = [], onNavigate, onClose })
                                     <p key={idx} className="case-study-summary-para">{p}</p>
                                 ))}
 
-                                {masterCard.caseStudy.sections.map((section, idx) => (
-                                    <div key={idx} className="case-study-section-block">
-                                        <h4 className="case-study-section-title">{section.title}</h4>
-                                        {section.content.map((item, itemIdx) => {
-                                            if (typeof item === 'string') {
-                                                return <p key={itemIdx} className="case-study-para">{item}</p>
-                                            } else if (item.type === 'list') {
-                                                return (
-                                                    <ul key={itemIdx} className="case-study-list">
-                                                        {item.items.map((li, liIdx) => (
-                                                            <li key={liIdx} className="case-study-list-item">{li}</li>
-                                                        ))}
-                                                    </ul>
-                                                )
-                                            } else if (item.type === 'subsections') {
-                                                return (
-                                                    <div key={itemIdx} className="case-study-subsections">
-                                                        {item.items.map((sub, subIdx) => (
-                                                            <div key={subIdx} className="case-study-subsection">
-                                                                <h5 className="case-study-subsection-title">{sub.title}</h5>
-                                                                {sub.content.map((p, pIdx) => {
-                                                                    if (typeof p === 'string') {
-                                                                        return <p key={pIdx} className="case-study-para">{p}</p>
-                                                                    } else if (p.type === 'list') {
-                                                                        return (
-                                                                            <ul key={pIdx} className="case-study-list nested">
-                                                                                {p.items.map((li, liIdx) => (
-                                                                                    <li key={liIdx} className="case-study-list-item">{li}</li>
-                                                                                ))}
-                                                                            </ul>
-                                                                        )
-                                                                    }
-                                                                    return null
-                                                                })}
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                )
-                                            }
-                                            return null
-                                        })}
-                                    </div>
-                                ))}
+                                {masterCard.caseStudy.sections.map((section, idx) => {
+                                    const isExpanded = !!expandedSections[idx];
+                                    return (
+                                        <div key={idx} className="case-study-section-block">
+                                            <button 
+                                                className="case-study-section-toggle" 
+                                                onClick={() => toggleSection(idx)}
+                                                aria-expanded={isExpanded}
+                                                aria-controls={`case-study-section-content-${idx}`}
+                                            >
+                                                <span className="case-study-section-title">{section.title}</span>
+                                                <span className={`case-study-toggle-icon ${isExpanded ? 'is-expanded' : ''}`}>
+                                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                                        <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" />
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                            <div 
+                                                id={`case-study-section-content-${idx}`}
+                                                className={`case-study-section-content-wrap ${isExpanded ? 'is-expanded' : ''}`}
+                                            >
+                                                <div className="case-study-section-content-inner">
+                                                    {section.content.map((item, itemIdx) => {
+                                                        if (typeof item === 'string') {
+                                                            return <p key={itemIdx} className="case-study-para">{item}</p>
+                                                        } else if (item.type === 'list') {
+                                                            return (
+                                                                <ul key={itemIdx} className="case-study-list">
+                                                                    {item.items.map((li, liIdx) => (
+                                                                        <li key={liIdx} className="case-study-list-item">{li}</li>
+                                                                    ))}
+                                                                </ul>
+                                                            )
+                                                        } else if (item.type === 'subsections') {
+                                                            return (
+                                                                <div key={itemIdx} className="case-study-subsections">
+                                                                    {item.items.map((sub, subIdx) => (
+                                                                        <div key={subIdx} className="case-study-subsection">
+                                                                            <h5 className="case-study-subsection-title">{sub.title}</h5>
+                                                                            {sub.content.map((p, pIdx) => {
+                                                                                if (typeof p === 'string') {
+                                                                                    return <p key={pIdx} className="case-study-para">{p}</p>
+                                                                                } else if (p.type === 'list') {
+                                                                                    return (
+                                                                                        <ul key={pIdx} className="case-study-list nested">
+                                                                                            {p.items.map((li, liIdx) => (
+                                                                                                <li key={liIdx} className="case-study-list-item">{li}</li>
+                                                                                            ))}
+                                                                                        </ul>
+                                                                                    )
+                                                                                }
+                                                                                return null
+                                                                            })}
+                                                                        </div>
+                                                                    ))}
+                                                                </div>
+                                                            )
+                                                        }
+                                                        return null
+                                                    })}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     )}

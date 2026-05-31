@@ -1989,7 +1989,34 @@ body {
 }
 
 .case-study-section-block {
-    margin-bottom: 48px;
+    margin-bottom: 24px;
+}
+
+.case-study-section-toggle {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+    color: inherit;
+    font-family: inherit;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding-bottom: 8px;
+    transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.dark-mode .case-study-section-toggle {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.case-study-section-toggle:hover {
+    opacity: 0.8;
+    border-bottom-color: var(--accent-blue);
 }
 
 .case-study-section-title {
@@ -1997,14 +2024,40 @@ body {
     font-size: 16px;
     color: var(--accent-blue);
     text-transform: uppercase;
-    margin: 0 0 20px 0;
+    margin: 0;
     font-weight: 400;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    padding-bottom: 6px;
+    padding: 0;
 }
 
-.dark-mode .case-study-section-title {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+.case-study-toggle-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-blue);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.case-study-toggle-icon.is-expanded {
+    transform: rotate(180deg);
+}
+
+/* Collapsible container with CSS Grid height transition */
+.case-study-section-content-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.case-study-section-content-wrap.is-expanded {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+.case-study-section-content-inner {
+    min-height: 0;
+    padding-top: 20px;
 }
 
 .case-study-para {
