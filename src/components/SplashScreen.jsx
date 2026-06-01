@@ -249,7 +249,7 @@ export default function SplashScreen({ onComplete }) {
                     </span>
                 ))}
             </div>
-            <canvas id="fish-canvas" ref={canvasRef} style={{ pointerEvents: 'none', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}></canvas>
+            <canvas id="fish-canvas" ref={canvasRef} style={{ pointerEvents: 'none', position: 'absolute', top: 0, left: 0, zIndex: 10 }}></canvas>
         </div>
     );
 }
