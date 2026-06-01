@@ -288,6 +288,12 @@ const cocoaCaseStudy = {
                             content: [
                                 'Users don\'t want a "black box" spending their money. By prioritizing explainability and graduated autonomy (moving from Copilot to Autopilot), we created a tool that media buyers see as a superpower, rather than a replacement.'
                             ]
+                        },
+                        {
+                            title: '2. Designing for failure states.',
+                            content: [
+                                'When an AI makes decisions, it\'s rarely 100% perfect on the first try. Designing graceful fallback states and clear error messages proved just as important as designing the "happy path." This ensured users could effortlessly course-correct the agent when it misallocated a budget, without losing trust in the system.'
+                            ]
                         }
                     ]
                 }
@@ -299,7 +305,7 @@ const cocoaCaseStudy = {
 const cards = [
     // 0. BRAND STRATEGY FOR NISA (First Project)
     {
-        id: 35,
+        id: 1,
         title: 'BRAND STRATEGY FOR NISA',
         description:
             'A curated showcase of design mockups, visual styles, and typographic directions created for NISA. This presentation highlights different creative paths explored for the client after a deliberate discovery call and research.',
@@ -318,7 +324,7 @@ const cards = [
 
     // 2. Agent Cocoa 2024
     {
-        id: 3,
+        id: 2,
         title: 'Agent Cocoa',
         description:
             'From user research and journey mapping through wireframes, prototypes, and a final high-fidelity design system built for calm, accessible experience.',
@@ -333,13 +339,13 @@ const cards = [
         expandTarget: 800,
         size: 'ultraWide',
         side: 'right',
-        related: [8],
+        related: [19],
         caseStudy: cocoaCaseStudy,
     },
 
     // NISA (Digital Catalogue & Artist Management)
     {
-        id: 29,
+        id: 3,
         title: 'NISA',
         description:
             'A digital catalogue and brand presentation for NISA, an artist management company. Designed to highlight talent curation, portfolio excellence, and visual storytelling across a beautifully structured editorial layout.',
@@ -358,7 +364,7 @@ const cards = [
 
     // Cremee Fresh
     {
-        id: 24,
+        id: 4,
         title: 'Cremee Fresh',
         description:
             'A comprehensive web experience and menu design for an artisanal bakery, focusing on responsive layouts, dietary filtering, and a premium aesthetic.',
@@ -376,7 +382,7 @@ const cards = [
 
     // 1. Millie the Witch
     {
-        id: 1,
+        id: 5,
         title: 'Millie the Witch',
         description:
             'An exploration of time-based visual language — how form travels, morphs, and communicates energy across frames.',
@@ -391,12 +397,12 @@ const cards = [
         team: 'Solo',
         size: 'tall',
         side: 'left',
-        related: [9],
+        related: [10],
     },
 
     // 3. Hold Your Pee: Drink Card (video)
     {
-        id: 18,
+        id: 6,
         title: 'Hold Your Pee: Drink Card',
         description:
             'Animated drink card for Hold Your Pee — a standard deck game played with friends while drinking. The game consists of 108 cards. This project is currently a work in progress and will be available in the market soon.',
@@ -413,7 +419,7 @@ const cards = [
 
     // 4. System-on-Modules Animation
     {
-        id: 21,
+        id: 7,
         title: 'System-on-Modules Animation',
         description:
             'An animation of a system-on-modules. I also created the illustration for it.',
@@ -429,7 +435,7 @@ const cards = [
 
     // 5. Character Silhouette (new)
     {
-        id: 19,
+        id: 8,
         title: 'Character Silhouette',
         description:
             'Character silhouette exploration for the Millie the Witch animated concept.',
@@ -442,7 +448,7 @@ const cards = [
         team: 'Solo',
     },
     {
-        id: 23,
+        id: 9,
         title: 'Millie Character',
         description:
             'Character illustration for the Millie the Witch animated concept.',
@@ -458,7 +464,7 @@ const cards = [
 
     // Millie Logo (swapped to position 6)
     {
-        id: 9,
+        id: 10,
         title: 'Millie Logo',
         description:
             'Wordmark and brand identity exploration for the Millie the Witch animated concept.',
@@ -472,7 +478,7 @@ const cards = [
         team: 'Solo',
         size: 'default',
         side: 'bottom',
-        related: [1],
+        related: [5],
     },
 
     // Millie Character Design & Flowboard
@@ -519,13 +525,13 @@ const cards = [
         group: 'agent_cocoa',
     },
     {
-        id: 10,
+        id: 17,
         title: 'Millie Animation Frame',
         image: `${BASE_URL}images/motion/millie_the_witch/animation.png`,
         group: 'millie',
     },
     {
-        id: 17,
+        id: 18,
         title: 'Agent Cocoa Pricing',
         image: `${BASE_URL}images/uiux/agent_cocoa/pricing.png`,
         categoryLabel: 'Web Frontend',
@@ -534,7 +540,7 @@ const cards = [
 
     // Agent Cocoa Logo (swapped here)
     {
-        id: 8,
+        id: 19,
         title: 'Agent Cocoa Logo',
         description:
             'The core visual identity and typographic mark for the Agent Cocoa wellness app, emphasizing warmth.',
@@ -548,12 +554,12 @@ const cards = [
         team: 'Aayushi Singh',
         size: 'wide',
         side: 'bottom',
-        related: [3],
+        related: [2],
     },
 
     // EcoFlink Logo
     {
-        id: 22,
+        id: 20,
         title: 'EcoFlink Logo',
         description:
             'A modern, organic visual identity and logo design for the EcoFlink supermarket chain, emphasizing sustainability, freshness, and approachability.',
@@ -567,7 +573,7 @@ const cards = [
 
     // Cool Cat Logo
     {
-        id: 20,
+        id: 21,
         title: 'Cool Cat Logo',
         description:
             'Brand identity and logo design for Cool Cat.',
@@ -583,7 +589,7 @@ const cards = [
 
     // --- Hold Your Pee cards (all at the bottom) ---
     {
-        id: 2,
+        id: 22,
         title: 'Hold Your Pee: Fishes',
         description:
             'Hold Your Pee is a standard deck game played with friends while drinking. It features 108 cards including minimalist two-colour illustrations like this Fishes card. Project is work in progress and will be in market soon.',
@@ -597,7 +603,7 @@ const cards = [
         side: 'left',
     },
     {
-        id: 4,
+        id: 23,
         title: 'Hold Your Pee: Cats',
         description:
             'A cohesive visual language for the Hold Your Pee card game — a 108-card standard deck for social drinking. Work in progress, coming to market soon.',
@@ -611,7 +617,7 @@ const cards = [
         side: 'right',
     },
     {
-        id: 5,
+        id: 24,
         title: 'Hold Your Pee: Geisha',
         description:
             'Minimalist two-colour illustrations for the 108-card Hold Your Pee drinking game. Work in progress, in market soon.',
@@ -625,7 +631,7 @@ const cards = [
         side: 'right',
     },
     {
-        id: 6,
+        id: 25,
         title: 'Hold Your Pee: Kabuki',
         description:
             'Kabuki drink card illustration for the Hold Your Pee 108-card deck. This drinking game project is a work in progress and will be available soon.',
@@ -639,7 +645,7 @@ const cards = [
         side: 'bottom',
     },
     {
-        id: 7,
+        id: 26,
         title: 'Hold Your Pee: Frog',
         description:
             'Playful green-themed drink card for the Hold Your Pee 108-card deck. A work in progress drinking game, coming soon to market.',
@@ -655,28 +661,28 @@ const cards = [
 
     // Cremee Fresh sub-cards
     {
-        id: 25,
+        id: 27,
         title: 'Cremee Fresh Menu',
         image: `${BASE_URL}images/uiux/cremee_fresh/cakewebsite2.png`,
         categoryLabel: 'Web Frontend',
         group: 'cremee_fresh',
     },
     {
-        id: 26,
+        id: 28,
         title: 'Cremee Fresh Breads',
         image: `${BASE_URL}images/uiux/cremee_fresh/cakewebsite3.png`,
         categoryLabel: 'Web Frontend',
         group: 'cremee_fresh',
     },
     {
-        id: 27,
+        id: 29,
         title: 'Cremee Fresh Snacks',
         image: `${BASE_URL}images/uiux/cremee_fresh/cakewebsite4.png`,
         categoryLabel: 'Web Frontend',
         group: 'cremee_fresh',
     },
     {
-        id: 28,
+        id: 30,
         title: 'Cremee Fresh Footer',
         image: `${BASE_URL}images/uiux/cremee_fresh/cakewebsite5.png`,
         categoryLabel: 'Web Frontend',
@@ -685,35 +691,35 @@ const cards = [
 
     // NISA sub-cards
     {
-        id: 30,
+        id: 31,
         title: 'NISA Slate',
         image: `${BASE_URL}images/visual/nisa/nisa_slide_2.png`,
         categoryLabel: 'Digital Catalogue',
         group: 'nisa',
     },
     {
-        id: 31,
+        id: 32,
         title: 'NISA Showcase',
         image: `${BASE_URL}images/visual/nisa/nisa_slide_3.png`,
         categoryLabel: 'Digital Catalogue',
         group: 'nisa',
     },
     {
-        id: 32,
+        id: 33,
         title: 'NISA Roster',
         image: `${BASE_URL}images/visual/nisa/nisa_slide_4.png`,
         categoryLabel: 'Digital Catalogue',
         group: 'nisa',
     },
     {
-        id: 33,
+        id: 34,
         title: 'NISA Talent Profile',
         image: `${BASE_URL}images/visual/nisa/nisa_slide_5.png`,
         categoryLabel: 'Digital Catalogue',
         group: 'nisa',
     },
     {
-        id: 34,
+        id: 35,
         title: 'NISA Contact & Agency Info',
         image: `${BASE_URL}images/visual/nisa/nisa_slide_6.png`,
         categoryLabel: 'Digital Catalogue',
@@ -722,28 +728,28 @@ const cards = [
 
     // BRAND STRATEGY FOR NISA sub-cards
     {
-        id: 38,
+        id: 36,
         title: 'Alternative Blue Illustration Mockup',
         image: `${BASE_URL}images/visual/mockups_for_nisa/nisabluedifferent_illustartion.png`,
         categoryLabel: 'Brand Strategy',
         group: 'mockups_for_nisa',
     },
     {
-        id: 39,
+        id: 37,
         title: 'Green Oil Painting Mockup',
         image: `${BASE_URL}images/visual/mockups_for_nisa/nisaGreenMockup.png`,
         categoryLabel: 'Brand Strategy',
         group: 'mockups_for_nisa',
     },
     {
-        id: 36,
+        id: 38,
         title: 'Blue Typographic Mockup',
         image: `${BASE_URL}images/visual/mockups_for_nisa/NisaBlueFont1.png`,
         categoryLabel: 'Brand Strategy',
         group: 'mockups_for_nisa',
     },
     {
-        id: 37,
+        id: 39,
         title: 'Red Typographic Mockup',
         image: `${BASE_URL}images/visual/mockups_for_nisa/nisaRedFont1.png`,
         categoryLabel: 'Brand Strategy',
