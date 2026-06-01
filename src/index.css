@@ -2154,3 +2154,143 @@ body {
         font-size: 15px;
     }
 }
+
+/* ── NEW MOBILE HAMBURGER & NAVIGATION OVERLAY ── */
+
+.nav-links-desktop {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Hide Hamburger by default on desktop */
+.mobile-hamburger-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    position: relative;
+    z-index: 1001; /* High z-index to sit on top of the overlay */
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: transform 0.2s ease;
+}
+
+.mobile-hamburger-btn:hover {
+    transform: scale(1.05);
+}
+
+.mobile-hamburger-btn:active {
+    transform: scale(0.95);
+}
+
+.hamburger-box {
+    width: 20px;
+    height: 14px;
+    position: relative;
+}
+
+.hamburger-inner {
+    width: 20px;
+    height: 1.5px;
+    background-color: var(--accent-blue);
+    position: absolute;
+    left: 0;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.hamburger-inner.line-1 {
+    top: 0;
+}
+
+.hamburger-inner.line-2 {
+    top: 6px;
+}
+
+.hamburger-inner.line-3 {
+    top: 12px;
+}
+
+/* Transform into X when active */
+.mobile-hamburger-btn.is-active .hamburger-inner.line-1 {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.mobile-hamburger-btn.is-active .hamburger-inner.line-2 {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.mobile-hamburger-btn.is-active .hamburger-inner.line-3 {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Mobile Nav Overlay */
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--detail-bg); /* Glassmorphic background color */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    z-index: 1000; /* Directly below the hamburger button (1001) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+    width: 100%;
+}
+
+.mobile-nav-link {
+    font-family: 'EB Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--accent-blue);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.mobile-nav-link:hover {
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+.mobile-nav-link.active {
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+/* Responsive styles to activate the hamburger layout on viewport under 768px */
+@media (max-width: 768px) {
+    .nav-links-desktop {
+        display: none;
+    }
+
+    .mobile-hamburger-btn {
+        display: flex;
+    }
+}

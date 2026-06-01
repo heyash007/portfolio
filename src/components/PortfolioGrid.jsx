@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Card from './Card'
 import VideoCard from './VideoCard'
 import PuzzleBoard from './PuzzleBoard'
@@ -18,6 +18,18 @@ const NAV_ITEMS = [
 export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onCardOpen }) {
     const projectsRef = useRef(null)
     const [isPuzzleSolved, setIsPuzzleSolved] = useState(false)
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = ''
+        }
+        return () => {
+            document.body.style.overflow = ''
+        }
+    }, [isMobileMenuOpen])
 
     function handleNavClick(e, filter) {
         e.preventDefault()
@@ -33,6 +45,10 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
         }
     }
 
+    function handleMobileNavClick(e, filter) {
+        setIsMobileMenuOpen(false)
+        handleNavClick(e, filter)
+    }
 
     return (
         <div className="new-page-container">
@@ -50,21 +66,62 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
                     </div>
                 </div>
                 <nav className="new-nav">
-                    {NAV_ITEMS.map(({ label, filter }) => (
-                        <a
-                            key={filter}
-                            href="#"
-                            onClick={(e) => handleNavClick(e, filter)}
-                            className={`nav-link font-eb-garamond-14 text-blue${activeFilter === filter ? ' active' : ''}`}
-                        >
-                            {label}
-                        </a>
-                    ))}
-                    <div style={{ paddingLeft: '12px', display: 'flex', alignItems: 'center' }}>
+                    {/* Desktop-only Navigation Links */}
+                    <div className="nav-links-desktop">
+                        {NAV_ITEMS.map(({ label, filter }) => (
+                            <a
+                                key={filter}
+                                href="#"
+                                onClick={(e) => handleNavClick(e, filter)}
+                                className={`nav-link font-eb-garamond-14 text-blue${activeFilter === filter ? ' active' : ''}`}
+                            >
+                                {label}
+                            </a>
+                        ))}
+                    </div>
+
+                    {/* Navigation Controls (Visible on mobile/desktop) */}
+                    <div className="nav-controls">
                         <ThemeToggle />
+                        <button
+                            className={`mobile-hamburger-btn ${isMobileMenuOpen ? 'is-active' : ''}`}
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            aria-label="Toggle Navigation Menu"
+                        >
+                            <div className="hamburger-box">
+                                <span className="hamburger-inner line-1"></span>
+                                <span className="hamburger-inner line-2"></span>
+                                <span className="hamburger-inner line-3"></span>
+                            </div>
+                        </button>
                     </div>
                 </nav>
             </header>
+
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.25, ease: 'easeInOut' }}
+                        className="mobile-nav-overlay"
+                    >
+                        <div className="mobile-nav-links">
+                            {NAV_ITEMS.map(({ label, filter }) => (
+                                <a
+                                    key={filter}
+                                    href="#"
+                                    onClick={(e) => handleMobileNavClick(e, filter)}
+                                    className={`mobile-nav-link font-eb-garamond-28${activeFilter === filter ? ' active' : ''}`}
+                                >
+                                    {label}
+                                </a>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             <main className="new-main">
                 {activeFilter === 'about' ? (
