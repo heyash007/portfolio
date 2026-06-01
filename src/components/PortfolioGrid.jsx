@@ -11,7 +11,7 @@ const NAV_ITEMS = [
     { label: 'home', filter: null },
     { label: 'visual', filter: 'visual' },
     { label: 'motion', filter: 'motion' },
-    { label: 'ui/ux', filter: 'uiux' },
+    { label: 'frontend', filter: 'frontend' },
     { label: 'about', filter: 'about' },
 ]
 
