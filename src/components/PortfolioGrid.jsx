@@ -32,7 +32,7 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
     }, [isMobileMenuOpen])
 
     function handleNavClick(e, filter) {
-        e.preventDefault()
+        if (e) e.preventDefault()
         // If clicking home (filter===null), set it to null.
         // Otherwise, if it's already active, we can leave it or toggle it (toggle behavior is fine).
         const next = filter === null ? null : (activeFilter === filter ? null : filter)
@@ -46,8 +46,14 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
     }
 
     function handleMobileNavClick(e, filter) {
+        if (e) e.preventDefault()
         setIsMobileMenuOpen(false)
-        handleNavClick(e, filter)
+        
+        // Delay the filter/scrolling action slightly to let the body overflow unlock
+        // and allow smooth scroll animations to fire correctly on mobile viewports.
+        setTimeout(() => {
+            handleNavClick(null, filter)
+        }, 150)
     }
 
     return (
