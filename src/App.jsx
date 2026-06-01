@@ -10,6 +10,35 @@ export default function App() {
     const [openCard, setOpenCard] = useState(null)
     const [showSplash, setShowSplash] = useState(true)
 
+    // Synchronize detailed card view with URL hash
+    useEffect(() => {
+        function handleHashChange() {
+            const hash = window.location.hash
+            if (hash.startsWith('#project-')) {
+                const id = hash.replace('#project-', '')
+                const selectedCard = cards.find((c) => String(c.id) === id)
+                if (selectedCard) {
+                    setOpenCard(selectedCard)
+                    return
+                }
+            }
+            setOpenCard(null)
+        }
+
+        // Check on mount (for direct links to projects)
+        handleHashChange()
+
+        window.addEventListener('hashchange', handleHashChange)
+        return () => window.removeEventListener('hashchange', handleHashChange)
+    }, [])
+
+    const clearHash = () => {
+        if (window.location.hash) {
+            window.history.pushState("", document.title, window.location.pathname + window.location.search)
+            window.dispatchEvent(new HashChangeEvent('hashchange'))
+        }
+    }
+
     // Click anywhere outside the nav → reset filter (mirrors old vanilla behaviour)
     useEffect(() => {
         function handleClick(e) {
@@ -39,15 +68,24 @@ export default function App() {
                 cards={gridCards}
                 activeFilter={activeFilter}
                 onFilterChange={setActiveFilter}
-                onCardOpen={setOpenCard}
+                onCardOpen={(card) => {
+                    if (card) {
+                        window.location.hash = `project-${card.id}`
+                    }
+                }}
             />
             <Footer />
             <DetailOverlay
                 card={openCard}
                 cards={filteredCards}
-                onNavigate={setOpenCard}
-                onClose={() => setOpenCard(null)}
+                onNavigate={(card) => {
+                    if (card) {
+                        window.location.hash = `project-${card.id}`
+                    }
+                }}
+                onClose={clearHash}
             />
         </>
     )
 }
+

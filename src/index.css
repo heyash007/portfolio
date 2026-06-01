@@ -2291,4 +2291,20 @@ body {
     .mobile-hamburger-btn {
         display: flex;
     }
+
+    /* Reposition detailed close button on mobile so it doesn't float over text */
+    .detail-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 38px;
+        height: 38px;
+        background: var(--pill-bg);
+        z-index: 202;
+    }
+
+    /* Add top padding to detailed view content to prevent text overlap at scroll-top */
+    .detail-content {
+        padding-top: 80px !important;
+    }
 }
