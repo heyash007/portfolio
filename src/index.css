@@ -2261,28 +2261,26 @@ body {
 
 .mobile-nav-link {
     font-family: 'EB Garamond', serif;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 400;
+    letter-spacing: 0.03em;
     color: var(--accent-blue);
     text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    transition: color 0.3s ease, transform 0.3s ease;
+    transition: color 0.3s ease, opacity 0.3s ease;
     cursor: pointer;
     position: relative;
     padding-bottom: 4px;
 }
 
 .mobile-nav-link:hover {
-    color: var(--text-primary);
-    transform: translateY(-2px);
+    opacity: 0.7;
 }
 
 .mobile-nav-link.active {
-    color: var(--text-primary);
     text-decoration: underline;
     text-underline-offset: 6px;
 }
+
 
 /* Responsive styles to activate the hamburger layout on viewport under 768px */
 @media (max-width: 768px) {
