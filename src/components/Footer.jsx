@@ -164,7 +164,7 @@ export default function Footer() {
                 <div className="footer-top">
                     <h2 className="footer-name font-departure-footer">AAYUSHI SINGH</h2>
                     <p className="footer-coded-by font-menlo">
-                        <TypewriterText text="coded by me and antigravity" />
+                        <TypewriterText text="coded by me and claude" />
                     </p>
                 </div>
                 <div className="footer-bottom">
