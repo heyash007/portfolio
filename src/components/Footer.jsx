@@ -172,7 +172,7 @@ export default function Footer() {
                         <p className="font-eb-garamond-footer">Hope you had a good swim!</p>
                     </div>
                     <div className="footer-contact">
-                        <p className="font-eb-garamond-footer">Let's work together</p>
+                        <p className="font-eb-garamond-footer">Product, design, {"<dev>"}, & everything in between.</p>
                         <a href="mailto:contact@aayushi.design" className="footer-email font-eb-garamond-footer">contact@aayushi.design</a>
                     </div>
                 </div>

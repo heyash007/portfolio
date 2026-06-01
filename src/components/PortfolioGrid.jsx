@@ -218,7 +218,7 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
                                 </div>
 
                                 <div className="contact-block">
-                                    <p className="font-eb-garamond-15 text-black" style={{ marginBottom: '4px' }}>Let's work together!</p>
+                                    <p className="font-eb-garamond-15 text-black" style={{ marginBottom: '4px' }}>Product, design, {"<dev>"}, & everything in between.</p>
                                     <a href="mailto:contact@aayushi.design" className="font-eb-garamond-15 text-blue" style={{ textDecoration: 'none' }}>contact@aayushi.design</a>
                                 </div>
                             </div>
