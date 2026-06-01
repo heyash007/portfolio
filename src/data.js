@@ -191,6 +191,111 @@ const nisaCaseStudy = {
     ]
 };
 
+const cocoaCaseStudy = {
+    subtitle: 'Agent Cocoa — AI-Powered Media Buyer',
+    intro: 'An autonomous, AI-powered media buyer designed specifically for portfolio companies and organizations managing multiple ad accounts.',
+    meta: [
+        { label: 'Role', value: 'Product & Visual Designer' },
+        { label: 'Platform', value: 'Web Application / AI Dashboard' }
+    ],
+    summaryParagraphs: [
+        'Managing digital advertising across a portfolio of companies is notoriously inefficient. Media buyers spend countless hours manually auditing ad spend, analyzing creatives, and trying to cross-pollinate successful strategies between different ad accounts on Google, Meta, and LinkedIn.',
+        'Agent Cocoa acts as an autonomous, AI-powered media buyer. By integrating directly with major ad networks, it audits spend in real-time, drastically reduces budget waste, and autonomously tests and scales winning creative formulas across the entire portfolio.'
+    ],
+    sections: [
+        {
+            title: 'The Problem Space',
+            content: [
+                'For organizations managing 10, 20, or 50+ ad accounts, data is heavily siloed. A marketing strategy that works beautifully for Company A on Meta might take months to be manually discovered and applied to Company B.',
+                'The key pain points were obvious:',
+                {
+                    type: 'list',
+                    items: [
+                        'Budget Bleed: Thousands of dollars wasted daily on underperforming ads that human managers cannot monitor 24/7.',
+                        'Manual Auditing: Conducting comprehensive ad audits across platforms is a tedious, spreadsheet-heavy process.',
+                        'Wasted Creative Potential: There was no automated way to say, "This video ad format worked great for Portfolio Co. 1, let\'s instantly test a variation for Portfolio Co. 2."'
+                    ]
+                },
+                'The goal was to design an intelligent system that doesn\'t just display data, but acts on it—an AI media buyer that optimizes budgets and creatives with the speed and scale no human team could match.'
+            ]
+        },
+        {
+            title: 'The Solution',
+            content: [
+                'Agent Cocoa shifts the paradigm from passive analytics dashboards to active, agentic AI. Here are the key features designed:',
+                {
+                    type: 'subsections',
+                    items: [
+                        {
+                            title: '1. The Omni-Auditor',
+                            content: [
+                                'A real-time engine that monitors Google, Meta, and LinkedIn simultaneously. It flags wasted spend instantly and highlights anomalies using a clean, easily scannable UI.'
+                            ]
+                        },
+                        {
+                            title: '2. Autonomous Budget Optimization',
+                            content: [
+                                'Instead of just alerting the user, Agent Cocoa can be granted permission to automatically reallocate budgets away from failing campaigns to top-performers.'
+                            ]
+                        },
+                        {
+                            title: '3. The Creative Cross-Pollinator',
+                            content: [
+                                'Agent Cocoa analyzes winning creative variables (e.g., "short-form UGC videos with text hooks") in one account, and generates actionable recommendations to deploy similar formulas in other relevant portfolio accounts.'
+                            ]
+                        },
+                        {
+                            title: '4. Trust & Explainability UI',
+                            content: [
+                                'Because AI handling large budgets can be scary for users, we designed a "Decision Log." Every action Cocoa takes is documented with transparent reasoning.'
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            title: 'The Design Process',
+            content: [
+                'The biggest UX challenge wasn\'t visualizing the data—it was designing for trust. If an AI is going to manage a $100,000 monthly ad spend, the user needs to feel completely in control.',
+                {
+                    type: 'subsections',
+                    items: [
+                        {
+                            title: '1. The "Copilot vs. Autopilot" Toggle',
+                            content: [
+                                'We introduced permission tiers. New users start in "Copilot Mode," where Cocoa suggests optimizations but requires a human click to execute. Once trust is built, they can switch specific campaigns to "Autopilot."'
+                            ]
+                        },
+                        {
+                            title: '2. Visualizing the Cross-Pollination',
+                            content: [
+                                'We designed a unique "Creative Testing Map" that visually shows how an ad concept originated in Account A and is currently being tested in Accounts B and C, giving high-level stakeholders a bird\'s-eye view of portfolio marketing health.'
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            title: 'Reflections',
+            content: [
+                {
+                    type: 'subsections',
+                    items: [
+                        {
+                            title: '1. UI for AI is about transparency.',
+                            content: [
+                                'Users don\'t want a "black box" spending their money. By prioritizing explainability and graduated autonomy (moving from Copilot to Autopilot), we created a tool that media buyers see as a superpower, rather than a replacement.'
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+};
+
 const cards = [
     // 0. BRAND STRATEGY FOR NISA (First Project)
     {
@@ -229,6 +334,7 @@ const cards = [
         size: 'ultraWide',
         side: 'right',
         related: [8],
+        caseStudy: cocoaCaseStudy,
     },
 
     // NISA (Digital Catalogue & Artist Management)
