@@ -1,0 +1,19 @@
+{
+  "name": "Aayushi Singh - Portfolio",
+  "short_name": "Aayushi",
+  "icons": [
+    {
+      "src": "/images/favicon/favicon-48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/favicon/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}
