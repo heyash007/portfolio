@@ -2282,6 +2282,19 @@ body {
 }
 
 
+/* Accordion styles for about sub-columns on desktop */
+.sub-column-toggle {
+    display: none;
+}
+
+.desktop-only-heading {
+    display: block;
+}
+
+.sub-column-content {
+    display: block; /* default expanded on desktop */
+}
+
 /* Responsive styles to activate the hamburger layout on viewport under 768px */
 @media (max-width: 768px) {
     .nav-links-desktop {
@@ -2306,5 +2319,71 @@ body {
     /* Add top padding to detailed view content to prevent text overlap at scroll-top */
     .detail-content {
         padding-top: 80px !important;
+    }
+
+    /* Collapsible About Sub-columns for Mobile */
+    .desktop-only-heading {
+        display: none;
+    }
+
+    .sub-column {
+        flex: none !important; /* Prevent flex-grow/shrink and basis stretching to 140px when collapsed */
+        gap: 0 !important; /* Remove desktop flex-gap to collapse height completely */
+        border-bottom: 0.5px solid var(--overlay-border);
+    }
+
+    .sub-column-toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        text-align: left;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 14px 0;
+        outline: none;
+    }
+
+    .toggle-chevron {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        color: var(--accent-blue);
+    }
+
+    .collapsible-sub-column.is-expanded .toggle-chevron {
+        transform: rotate(180deg);
+    }
+
+    .sub-column-content {
+        display: block; /* Override grid layout to use standard max-height constraints */
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+        width: 100%;
+    }
+
+    .collapsible-sub-column.is-expanded .sub-column-content {
+        max-height: 250px; /* Safe upper limit for the contents list */
+        opacity: 1;
+    }
+
+    .sub-column-content > ul {
+        padding: 8px 4px 16px;
+        box-sizing: border-box;
+    }
+
+    .about-sub-columns {
+        display: flex;
+        flex-direction: column;
+        gap: 0; /* Stack drawers directly under one another */
+        flex: none !important; /* Prevent parent columns from stretching vertically */
+    }
+
+    .collapsible-sub-column {
+        border-bottom: 0.5px solid var(--overlay-border);
     }
 }

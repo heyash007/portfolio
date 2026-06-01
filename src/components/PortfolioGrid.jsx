@@ -19,6 +19,8 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
     const projectsRef = useRef(null)
     const [isPuzzleSolved, setIsPuzzleSolved] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+    const [isAnatomyOpen, setIsAnatomyOpen] = useState(false)
+    const [isPhilosophyOpen, setIsPhilosophyOpen] = useState(false)
 
     useEffect(() => {
         if (isMobileMenuOpen) {
@@ -158,29 +160,60 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
                                 </p>
 
                                 <div className="about-sub-columns">
-                                    <div className="sub-column">
-                                        <h2 className="font-departure-15 text-blue">DESIGN ANATOMY</h2>
-                                        <ul className="font-departure-12 text-blue">
-                                            <li>Films : Colour</li>
-                                            <li>Philosophy : Purpose</li>
-                                            <li>Psychoanalysis : Insight</li>
-                                            <li>Storytelling : Structure</li>
-                                            <li>Sketching : Form</li>
-                                            <li>Writing : Clarity</li>
-                                            <li>Cooking : Patience</li>
-                                        </ul>
+                                    <div className={`sub-column collapsible-sub-column ${isAnatomyOpen ? 'is-expanded' : ''}`}>
+                                        <button 
+                                            className="sub-column-toggle font-departure-15 text-blue"
+                                            onClick={() => setIsAnatomyOpen(!isAnatomyOpen)}
+                                            aria-expanded={isAnatomyOpen}
+                                        >
+                                            <span>DESIGN ANATOMY</span>
+                                            <span className="toggle-chevron">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                                    <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" />
+                                                </svg>
+                                            </span>
+                                        </button>
+                                        <h2 className="font-departure-15 text-blue desktop-only-heading">DESIGN ANATOMY</h2>
+                                        
+                                        <div className="sub-column-content">
+                                            <ul className="font-departure-12 text-blue">
+                                                <li>Films : Colour</li>
+                                                <li>Philosophy : Purpose</li>
+                                                <li>Psychoanalysis : Insight</li>
+                                                <li>Storytelling : Structure</li>
+                                                <li>Sketching : Form</li>
+                                                <li>Writing : Clarity</li>
+                                                <li>Cooking : Patience</li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div className="sub-column">
-                                        <h2 className="font-departure-15 text-blue">DESIGN PHILOSOPHY</h2>
-                                        <ul className="font-departure-12 text-blue nested-bullets">
-                                            <li>· Purposeful: Innovation must drive utility</li>
-                                            <li>· Enduring: Built to outlast fleeting trends.</li>
-                                            <li>· Clear: Aesthetics exist to build understanding.</li>
-                                            <li>· Quiet: The design remains unobtrusive.</li>
-                                            <li>· Honest: It delivers exactly what it promises.</li>
-                                            <li>· Meticulous: Considered down to the last pixel.</li>
-                                            <li>· Essential: Does more with less.</li>
-                                        </ul>
+
+                                    <div className={`sub-column collapsible-sub-column ${isPhilosophyOpen ? 'is-expanded' : ''}`}>
+                                        <button 
+                                            className="sub-column-toggle font-departure-15 text-blue"
+                                            onClick={() => setIsPhilosophyOpen(!isPhilosophyOpen)}
+                                            aria-expanded={isPhilosophyOpen}
+                                        >
+                                            <span>DESIGN PHILOSOPHY</span>
+                                            <span className="toggle-chevron">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                                    <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" />
+                                                </svg>
+                                            </span>
+                                        </button>
+                                        <h2 className="font-departure-15 text-blue desktop-only-heading">DESIGN PHILOSOPHY</h2>
+                                        
+                                        <div className="sub-column-content">
+                                            <ul className="font-departure-12 text-blue nested-bullets">
+                                                <li>· Purposeful: Innovation must drive utility</li>
+                                                <li>· Enduring: Built to outlast fleeting trends.</li>
+                                                <li>· Clear: Aesthetics exist to build understanding.</li>
+                                                <li>· Quiet: The design remains unobtrusive.</li>
+                                                <li>· Honest: It delivers exactly what it promises.</li>
+                                                <li>· Meticulous: Considered down to the last pixel.</li>
+                                                <li>· Essential: Does more with less.</li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
 
