@@ -64,7 +64,7 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
                 <div className="logo-group">
                     <a href="#" onClick={(e) => handleNavClick(e, null)}>
                         <img
-                            src="/images/logo/namesealBLUE.svg?v=5"
+                            src="/images/logo/namesealBLUE.svg?v=6"
                             alt="Logo"
                             className="new-logo"
                         />
