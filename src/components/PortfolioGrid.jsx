@@ -50,7 +50,7 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
     function handleMobileNavClick(e, filter) {
         if (e) e.preventDefault()
         setIsMobileMenuOpen(false)
-        
+
         // Delay the filter/scrolling action slightly to let the body overflow unlock
         // and allow smooth scroll animations to fire correctly on mobile viewports.
         setTimeout(() => {
@@ -64,7 +64,7 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
                 <div className="logo-group">
                     <a href="#" onClick={(e) => handleNavClick(e, null)}>
                         <img
-                            src="/images/logo/namesealBLUE.svg?v=6"
+                            src="/images/logo/namesealBLUE.svg?v=5"
                             alt="Logo"
                             className="new-logo"
                         />
@@ -161,7 +161,7 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
 
                                 <div className="about-sub-columns">
                                     <div className={`sub-column collapsible-sub-column ${isAnatomyOpen ? 'is-expanded' : ''}`}>
-                                        <button 
+                                        <button
                                             className="sub-column-toggle font-departure-15 text-blue"
                                             onClick={() => setIsAnatomyOpen(!isAnatomyOpen)}
                                             aria-expanded={isAnatomyOpen}
@@ -174,7 +174,7 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
                                             </span>
                                         </button>
                                         <h2 className="font-departure-15 text-blue desktop-only-heading">DESIGN ANATOMY</h2>
-                                        
+
                                         <div className="sub-column-content">
                                             <ul className="font-departure-12 text-blue">
                                                 <li>Films : Colour</li>
@@ -189,7 +189,7 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
                                     </div>
 
                                     <div className={`sub-column collapsible-sub-column ${isPhilosophyOpen ? 'is-expanded' : ''}`}>
-                                        <button 
+                                        <button
                                             className="sub-column-toggle font-departure-15 text-blue"
                                             onClick={() => setIsPhilosophyOpen(!isPhilosophyOpen)}
                                             aria-expanded={isPhilosophyOpen}
@@ -202,7 +202,7 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
                                             </span>
                                         </button>
                                         <h2 className="font-departure-15 text-blue desktop-only-heading">DESIGN PHILOSOPHY</h2>
-                                        
+
                                         <div className="sub-column-content">
                                             <ul className="font-departure-12 text-blue nested-bullets">
                                                 <li>· Purposeful: Innovation must drive utility</li>
@@ -219,7 +219,13 @@ export default function PortfolioGrid({ cards, activeFilter, onFilterChange, onC
 
                                 <div className="contact-block">
                                     <p className="font-eb-garamond-15 text-black" style={{ marginBottom: '4px' }}>Product, design, {"<dev>"}, & everything in between.</p>
-                                    <a href="mailto:contact@aayushi.design" className="font-eb-garamond-15 text-blue" style={{ textDecoration: 'none' }}>contact@aayushi.design</a>
+                                    <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+                                        <a href="https://cal.com/aayushi-singh-fbozlw" target="_blank" rel="noopener noreferrer" className="font-eb-garamond-15 text-blue" style={{ textDecoration: 'none' }}>Book an intro call</a>
+                                        <span className="font-eb-garamond-15" style={{ color: 'var(--text-primary)', opacity: 0.3 }}>|</span>
+                                        <a href="mailto:contact@aayushi.design" className="font-eb-garamond-15 text-blue" style={{ textDecoration: 'none' }}>Email</a>
+                                        <span className="font-eb-garamond-15" style={{ color: 'var(--text-primary)', opacity: 0.3 }}>|</span>
+                                        <a href="https://www.instagram.com/aayushidesigns" target="_blank" rel="noopener noreferrer" className="font-eb-garamond-15 text-blue" style={{ textDecoration: 'none' }}>Instagram</a>
+                                    </div>
                                 </div>
                             </div>
                         </section>

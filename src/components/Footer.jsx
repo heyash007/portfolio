@@ -173,7 +173,13 @@ export default function Footer() {
                     </div>
                     <div className="footer-contact">
                         <p className="font-eb-garamond-footer">Product, design, {"<dev>"}, & everything in between.</p>
-                        <a href="mailto:contact@aayushi.design" className="footer-email font-eb-garamond-footer">contact@aayushi.design</a>
+                        <div style={{ display: 'inline-flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+                            <a href="https://cal.com/aayushi-singh-fbozlw" target="_blank" rel="noopener noreferrer" className="footer-email font-eb-garamond-footer" style={{ textDecoration: 'none', marginTop: 0 }}>Book an intro call</a>
+                            <span className="font-eb-garamond-footer" style={{ opacity: 0.3 }}>|</span>
+                            <a href="mailto:contact@aayushi.design" className="footer-email font-eb-garamond-footer" style={{ textDecoration: 'none', marginTop: 0 }}>Email</a>
+                            <span className="font-eb-garamond-footer" style={{ opacity: 0.3 }}>|</span>
+                            <a href="https://www.instagram.com/aayushidesigns" target="_blank" rel="noopener noreferrer" className="footer-email font-eb-garamond-footer" style={{ textDecoration: 'none', marginTop: 0 }}>Instagram</a>
+                        </div>
                     </div>
                 </div>
             </div>
