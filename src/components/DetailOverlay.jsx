@@ -202,7 +202,7 @@ export default function DetailOverlay({ card, cards = [], onNavigate, onClose })
                                 playsInline
                             />
                         ) : (
-                            <img className="detail-img" src={activeAsset.image} alt={activeAsset.title} />
+                            <img className="detail-img" src={activeAsset.image} alt={activeAsset.galleryTitle || activeAsset.title} />
                         )}
                     </div>
 
@@ -229,7 +229,7 @@ export default function DetailOverlay({ card, cards = [], onNavigate, onClose })
                                                 if (scroller) scroller.scrollTo({ top: 0, behavior: 'smooth' })
                                                 setViewedAssetId(c.id)
                                             }}
-                                            aria-label={`View ${c.title}`}
+                                            aria-label={`View ${c.galleryTitle || c.title}`}
                                         >
                                             <div className="related-img-wrap">
                                                 {c.coverVideo ? (
@@ -241,10 +241,10 @@ export default function DetailOverlay({ card, cards = [], onNavigate, onClose })
                                                         playsInline
                                                     />
                                                 ) : (
-                                                     <img src={c.image} alt={c.title} />
+                                                     <img src={c.image} alt={c.galleryTitle || c.title} />
                                                 )}
                                             </div>
-                                            <span className="related-item-title">{c.title}</span>
+                                            <span className="related-item-title">{c.galleryTitle || c.title}</span>
                                         </button>
                                     ))}
                                 </div>

@@ -307,9 +307,10 @@ const cards = [
     {
         id: 1,
         title: 'BRAND STRATEGY FOR NISA',
+        galleryTitle: 'White + cobalt sketched jazz band',
         description:
             'A curated showcase of design mockups, visual styles, and typographic directions created for NISA. This presentation highlights different creative paths explored for the client after a deliberate discovery call and research.',
-        image: `${BASE_URL}images/visual/mockups_for_nisa/nisaOILpaintstyle.png`,
+        image: `${BASE_URL}images/visual/mockups_for_nisa/nisabluedifferent_illustartion.png`,
         category: 'visual',
         categoryLabel: 'Brand Strategy',
         group: 'mockups_for_nisa',
@@ -730,13 +731,15 @@ const cards = [
     {
         id: 36,
         title: 'Alternative Blue Illustration Mockup',
-        image: `${BASE_URL}images/visual/mockups_for_nisa/nisabluedifferent_illustartion.png`,
+        galleryTitle: 'Cream + impressionist band painting',
+        image: `${BASE_URL}images/visual/mockups_for_nisa/nisaOILpaintstyle.png`,
         categoryLabel: 'Brand Strategy',
         group: 'mockups_for_nisa',
     },
     {
         id: 37,
         title: 'Green Oil Painting Mockup',
+        galleryTitle: 'Forest green + textured oil-painting trumpet portrait',
         image: `${BASE_URL}images/visual/mockups_for_nisa/nisaGreenMockup.png`,
         categoryLabel: 'Brand Strategy',
         group: 'mockups_for_nisa',
@@ -744,6 +747,7 @@ const cards = [
     {
         id: 38,
         title: 'Blue Typographic Mockup',
+        galleryTitle: 'Royal blue + a vibrant multicoloured portrait',
         image: `${BASE_URL}images/visual/mockups_for_nisa/NisaBlueFont1.png`,
         categoryLabel: 'Brand Strategy',
         group: 'mockups_for_nisa',
@@ -751,6 +755,7 @@ const cards = [
     {
         id: 39,
         title: 'Red Typographic Mockup',
+        galleryTitle: 'Crimson red + the same portrait',
         image: `${BASE_URL}images/visual/mockups_for_nisa/nisaRedFont1.png`,
         categoryLabel: 'Brand Strategy',
         group: 'mockups_for_nisa',
